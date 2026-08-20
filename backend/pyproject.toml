@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pta-ctdisr-compliance-audit-backend"
+version = "0.1.0"
+description = "AI-powered PTA CTDISR compliance audit system"
+requires-python = ">=3.10,<3.11"
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pydantic-settings",
+    "python-multipart",
+
+    # Document ingestion
+    "pypdf",
+    "textract",
+    "python-docx",
+    "openpyxl",
+    "pandas",
+
+    # Embeddings / AI
+    "sentence-transformers",
+    "torch",
+    "transformers",
+    "peft",
+    "accelerate",
+    "bitsandbytes",
+
+    # Database
+    "sqlalchemy",
+    "psycopg[binary]",
+    "alembic",
+
+    # Vector search
+    "faiss-cpu",
+
+    # Authentication
+    "python-jose[cryptography]",
+    "passlib[bcrypt]",
+
+    # HTTP
+    "httpx",
+    "requests",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]

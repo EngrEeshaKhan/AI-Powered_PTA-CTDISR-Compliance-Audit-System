@@ -1,0 +1,17 @@
+[
+  {
+    "control_id": "3.1",
+    "control_level": "CL1",
+    "control_description": "These Regulations shall apply to all PTA licensees for the security of critical telecom data and critical telecom infrastructure related to Telecom Sector, in accordance with the procedures specified in these Regulations.",
+    "interpretation": "CTDISR shall be applied to a Licensee in line with the requirements of the PTA including the Geographical scope (e.g. Data centers, sites, locations, etc.) as well as the Technical Scope (e.g. Infrastructure / Network / Applications / Data / Systems, etc.).",
+    "pta_response": "",
+    "pta_recommendations": "",
+    "action_by": "",
+    "ntc_comments": "",
+    "source_document": "national_cs_framework_for_telecom_07-07-2022.pdf",
+    "status": "active",
+    "version": "1.0",
+    "created_at": "2026-08-20T07:30:35.438368+00:00",
+    "updated_at": "2026-08-20T07:30:35.438368+00:00"
+  }
+]

@@ -1,0 +1,84 @@
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# =========================
+# Node / Frontend
+# =========================
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# =========================
+# IDE / OS
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# =========================
+# Python build artifacts
+# =========================
+*.egg-info/
+build/
+dist/
+
+# =========================
+# Local AI Models
+# =========================
+models/
+
+# =========================
+# Local uploaded / private documents
+# =========================
+storage/documents/
+
+# =========================
+# Generated local data
+# =========================
+storage/cache/
+storage/logs/
+storage/temp/
+storage/vectors/
+
+# =========================
+# Generated audit output
+# =========================
+storage/audits/
+storage/reports/
+
+# =========================
+# Database backups
+# =========================
+database/backup/
+
+# =========================
+# Local logs
+# =========================
+*.log
