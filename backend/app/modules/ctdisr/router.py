@@ -4,6 +4,10 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.ai.pipelines.audit_pipeline import get_audit_pipeline
 
+from app.modules.audits.audit_result_store import (
+    save_audit_result,
+)
+
 from app.modules.ctdisr.schemas import (
     CTDISRControlCreate,
     CTDISRControlResponse,
@@ -186,7 +190,7 @@ def audit_control(
         ),
     ),
     max_new_tokens: int = Query(
-        400,
+        200,
         ge=100,
         le=1000,
         description=(
@@ -209,6 +213,11 @@ def audit_control(
         )
 
     try:
+
+        # -----------------------------------------------------
+        # RUN AI AUDIT
+        # -----------------------------------------------------
+
         pipeline = get_audit_pipeline()
 
         result = pipeline.audit_control(
@@ -217,21 +226,36 @@ def audit_control(
             max_new_tokens=max_new_tokens,
         )
 
+        # -----------------------------------------------------
+        # SAVE AUDIT RESULT
+        # -----------------------------------------------------
+
+        saved_result = save_audit_result(
+            result
+        )
+
+        # -----------------------------------------------------
+        # RESPONSE
+        # -----------------------------------------------------
+
         return {
             "success": True,
             "message": (
-                "AI CTDISR audit completed successfully."
+                "AI CTDISR audit completed "
+                "and saved successfully."
             ),
-            "result": result,
+            "result": saved_result,
         }
 
     except ValueError as exc:
+
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=str(exc),
         )
 
     except FileNotFoundError as exc:
+
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=(
@@ -241,6 +265,7 @@ def audit_control(
         )
 
     except RuntimeError as exc:
+
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=(
@@ -250,6 +275,7 @@ def audit_control(
         )
 
     except Exception as exc:
+
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=(

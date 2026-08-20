@@ -6,7 +6,9 @@ from typing import Any
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(
+        timezone.utc
+    ).isoformat()
 
 
 @dataclass
@@ -14,17 +16,19 @@ class AuditResult:
     """
     Result of an AI audit for one CTDISR control.
 
-    The official CTDISR control information remains separate.
+    Static/reference fields:
+        - control_id
+        - control_level
+        - control_description
+        - interpretation
 
-    AI-generated audit fields:
-        - PTA Response
-        - PTA Recommendations
-        - Action By
+    AI-generated fields:
+        - pta_response
+        - pta_recommendations
+        - action_by
 
-    These fields can be reviewed and edited by the auditor
-    until the result is finalized.
-
-    NTC Comments are kept separate for NTC management input.
+    Auditor-editable field:
+        - ntc_comments
     """
 
     # =========================================================
@@ -58,12 +62,8 @@ class AuditResult:
     ntc_comments: str = ""
 
     # =========================================================
-    # AUDIT STATUS
+    # STATUS
     # =========================================================
-
-    # generated = AI generated result
-    # reviewed = auditor edited/reviewed result
-    # finalized = auditor finalized result; editing locked
 
     status: str = "generated"
 
@@ -74,6 +74,7 @@ class AuditResult:
     manually_edited: bool = False
 
     last_edited_by: str | None = None
+
     last_edited_at: str | None = None
 
     # =========================================================

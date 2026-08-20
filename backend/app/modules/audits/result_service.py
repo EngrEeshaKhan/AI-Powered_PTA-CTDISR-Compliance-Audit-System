@@ -1,14 +1,15 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Any
 
 from app.modules.audits.result_models import AuditResult
 from app.modules.audits.result_repository import AuditResultRepository
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(
+        timezone.utc
+    ).isoformat()
 
 
 class AuditResultService:
@@ -27,7 +28,9 @@ class AuditResultService:
     # GET ALL RESULTS
     # =========================================================
 
-    def get_all_results(self) -> list[AuditResult]:
+    def get_all_results(
+        self,
+    ) -> list[AuditResult]:
 
         return self.repository.get_all()
 
@@ -105,7 +108,7 @@ class AuditResultService:
         )
 
     # =========================================================
-    # EDIT AI-GENERATED FIELDS
+    # EDIT + SAVE
     # =========================================================
 
     def edit_result(
@@ -114,6 +117,7 @@ class AuditResultService:
         pta_response: str | None = None,
         pta_recommendations: str | None = None,
         action_by: str | None = None,
+        ntc_comments: str | None = None,
         edited_by: str = "auditor",
     ) -> AuditResult:
 
@@ -131,30 +135,52 @@ class AuditResultService:
         # -----------------------------------------------------
 
         if result.status == "finalized":
+
             raise ValueError(
                 "This audit result has been finalized "
                 "and can no longer be edited."
             )
 
-        updates: dict[str, Any] = {}
+        updates = {}
+
+        # -----------------------------------------------------
+        # EDITABLE AI FIELDS
+        # -----------------------------------------------------
 
         if pta_response is not None:
+
             updates["pta_response"] = (
                 pta_response.strip()
             )
 
         if pta_recommendations is not None:
+
             updates["pta_recommendations"] = (
                 pta_recommendations.strip()
             )
 
         if action_by is not None:
+
             updates["action_by"] = (
                 action_by.strip()
             )
 
-        # Nothing was actually changed.
+        # -----------------------------------------------------
+        # EDITABLE NTC COMMENT
+        # -----------------------------------------------------
+
+        if ntc_comments is not None:
+
+            updates["ntc_comments"] = (
+                ntc_comments.strip()
+            )
+
+        # -----------------------------------------------------
+        # NOTHING TO UPDATE
+        # -----------------------------------------------------
+
         if not updates:
+
             return result
 
         # -----------------------------------------------------
@@ -164,9 +190,13 @@ class AuditResultService:
         now = utc_now()
 
         updates["status"] = "reviewed"
+
         updates["manually_edited"] = True
+
         updates["last_edited_by"] = edited_by
+
         updates["last_edited_at"] = now
+
         updates["updated_at"] = now
 
         updated = self.repository.update(
@@ -175,14 +205,16 @@ class AuditResultService:
         )
 
         if updated is None:
+
             raise ValueError(
-                f"Audit result '{result_id}' could not be updated."
+                f"Audit result '{result_id}' "
+                "could not be updated."
             )
 
         return updated
 
     # =========================================================
-    # FINALIZE RESULT
+    # FINALIZE
     # =========================================================
 
     def finalize_result(
@@ -196,11 +228,13 @@ class AuditResultService:
         )
 
         if result is None:
+
             raise ValueError(
                 f"Audit result '{result_id}' not found."
             )
 
         if result.status == "finalized":
+
             raise ValueError(
                 "This audit result is already finalized."
             )
@@ -218,6 +252,7 @@ class AuditResultService:
         )
 
         if updated is None:
+
             raise ValueError(
                 f"Audit result '{result_id}' "
                 "could not be finalized."

@@ -3,6 +3,10 @@ from fastapi import FastAPI
 from app.api.v1.uploads import router as uploads_router
 from app.api.v1.ctdisr import router as ctdisr_router
 
+from app.modules.audits.json_audit_router import (
+    router as saved_audit_router,
+)
+
 
 app = FastAPI(
     title="AI-Powered PTA CTDISR Compliance Audit System",
@@ -25,6 +29,11 @@ app.include_router(
 
 app.include_router(
     ctdisr_router,
+    prefix="/api/v1",
+)
+
+app.include_router(
+    saved_audit_router,
     prefix="/api/v1",
 )
 
