@@ -1,12 +1,18 @@
 from fastapi import FastAPI
 
+from app.api.v1.auth import router as auth_router
 from app.api.v1.uploads import router as uploads_router
 from app.api.v1.ctdisr import router as ctdisr_router
+from app.api.v1.dashboard import router as dashboard_router
 
 from app.modules.audits.json_audit_router import (
     router as saved_audit_router,
 )
 
+
+# =========================================================
+# APPLICATION
+# =========================================================
 
 app = FastAPI(
     title="AI-Powered PTA CTDISR Compliance Audit System",
@@ -22,15 +28,39 @@ app = FastAPI(
 # API ROUTERS
 # =========================================================
 
+# ---------------------------------------------------------
+# Authentication
+# ---------------------------------------------------------
+
+app.include_router(
+    auth_router,
+    prefix="/api/v1",
+)
+
+
+# ---------------------------------------------------------
+# Document Uploads
+# ---------------------------------------------------------
+
 app.include_router(
     uploads_router,
     prefix="/api/v1",
 )
 
+
+# ---------------------------------------------------------
+# CTDISR Controls
+# ---------------------------------------------------------
+
 app.include_router(
     ctdisr_router,
     prefix="/api/v1",
 )
+
+
+# ---------------------------------------------------------
+# Saved Audit Results
+# ---------------------------------------------------------
 
 app.include_router(
     saved_audit_router,
@@ -38,8 +68,18 @@ app.include_router(
 )
 
 
+# ---------------------------------------------------------
+# Dashboard
+# ---------------------------------------------------------
+
+app.include_router(
+    dashboard_router,
+    prefix="/api/v1",
+)
+
+
 # =========================================================
-# SYSTEM
+# SYSTEM ENDPOINTS
 # =========================================================
 
 @app.get(

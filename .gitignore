@@ -82,3 +82,7 @@ database/backup/
 # Local logs
 # =========================
 *.log
+# =========================
+# Local authentication data
+# =========================
+storage/auth/
