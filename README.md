@@ -89,20 +89,7 @@ Supported categories:
 
 -   Policies
 -   Advisories
--   CTDISR
--   Assets
-
-Supported file formats:
-
--   PDF
--   DOC
--   DOCX
--   XLS
--   XLSX
-
-------------------------------------------------------------------------
-
-## 2. 
+-   
 ```
 
 ------------------------------------------------------------------------
