@@ -1,24 +1,6 @@
 ::: {align="center"}
 # AI-Powered PTA CTDISR Compliance Audit System
 
-### Intelligent Compliance Auditing • Retrieval-Augmented Generation • Fine-Tuned LLM • Enterprise Knowledge Management
-
-```{=html}
-<p>
-```
-`<
-<p>
-```
-```
-```{=html}
-<p>
-```
-`<img src="https://img.shields.io/badge/License-Academic%20%2F%20Project-lightgrey?style=for-the-badge" alt="License">`{=html}
-`<img src="https://img.shields.io/badge/Status-Active%20Development-22C55E?style=for-the-badge" alt="Status">`{=html}
-```{=html}
-</p>
-```
-:::
 
 ------------------------------------------------------------------------
 
