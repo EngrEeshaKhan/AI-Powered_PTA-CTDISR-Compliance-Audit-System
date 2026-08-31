@@ -2,16 +2,7 @@
 # AI-Powered PTA CTDISR Compliance Audit System
 
 
-------------------------------------------------------------------------
-
-## 📌 Overview
-
-The **AI-Powered PTA CTDISR Compliance Audit System** is an
-enterprise-oriented web platform designed to assist organizations in
-preparing, managing, and reviewing compliance audits against **Pakistan
-Telecommunication Authority (PTA) Cyber Threat Detection and Information
-Security Regulations (CTDISR)** requirements.
-
+----------
 The system combines:
 
 -   **Knowledge Base Management**
