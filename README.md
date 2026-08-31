@@ -196,22 +196,7 @@ The project dataset includes fields such as:
 
 ``` text
 Control
-Control Description
-Control Interpretation
-PTA Response
-PTA Recommendations
-Action By
-NTC Comments
-```
-
-The fine-tuned model is intended to assist with generating
-audit-oriented responses rather than replacing the final human
-compliance decision.
-
-------------------------------------------------------------------------
-
-# 🔐 Security & Access Control
-
+Cont
 The platform uses authenticated access and role-based functionality.
 
 ### Roles
