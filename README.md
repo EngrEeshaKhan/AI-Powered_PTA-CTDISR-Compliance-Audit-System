@@ -17,10 +17,7 @@
 </p>
 ```
 ```{=html}
-<p>
-```
-`<img src="https://img.shields.io/badge/FAISS-Vector%20Search-16A085?style=for-the-badge" alt="FAISS">`{=html}
-`<img src="https://img.shields.io/badge/MUI-Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white" alt="Material UI">`{=html}
+<p>FF?style=for-the-badge&logo=mui&logoColor=white" alt="Material UI">`{=html}
 `<img src="https://img.shields.io/badge/Axios-HTTP%20Client-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios">`{=html}
 `<img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">`{=html}
 ```{=html}
