@@ -1,18 +1,7 @@
 ::: {align="center"}
 # AI-Powered PTA CTDISR Compliance Audit System
 
-
-----------
-The system combines:ce
-                                      structured PTA-style audit
-                                      assistance
-
-  👨‍💼 Human Review                     Allow auditors to review and
-                                      validate AI-generated findings
-
-  📊 Compliance Visibility            Provide dashboards, statistics,
-                                      control status and audit activity
-  -----------------------------------------------------------------------
+--------
 
 ------------------------------------------------------------------------
 
