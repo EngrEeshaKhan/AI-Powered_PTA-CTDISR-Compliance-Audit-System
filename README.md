@@ -121,21 +121,7 @@ The project uses:
 
 **`sentence-transformers/all-MiniLM-L6-v2`**
 
-to convert text chunks into numerical vectors.
-
-Conceptually:
-
-``` text
-Compliance Text
-       ↓
-Sentence Transformer
-       ↓
-384-dimensional embedding
-       ↓
-Vector Index
-```
-
-Embeddings are cached to reduce unnecessary recomputation.
+to computation.
 
 ------------------------------------------------------------------------
 
