@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(34, 197, 94, 0.045), transparent 25%),
+    radial-gradient(circle at 88% 88%, rgba(20, 184, 166, 0.035), transparent 28%),
+    #070b0a;
+
+  color: #d7e0dc;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* -------------------------
+   Scrollbar
+------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080d0b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #24332d;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #31443b;
+}
+
+/* -------------------------
+   Main shell
+------------------------- */
+
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.008),
+    transparent 30%
+  );
+}
+
+/* -------------------------
+   Sidebar
+------------------------- */
+
+.sidebar-gradient {
+  background:
+    radial-gradient(
+      circle at 50% 4%,
+      rgba(34, 197, 94, 0.055),
+      transparent 25%
+    ),
+    #080d0b;
+}
+
+/* -------------------------
+   Glass panels
+------------------------- */
+
+.glass {
+  background: rgba(14, 21, 18, 0.78);
+  backdrop-filter: blur(16px);
+}
+
+/* =========================================
+   COMPACT ENTERPRISE TYPOGRAPHY
+   ========================================= */
+
+body {
+  font-size: 12px !important;
+}
+
+/* Navigation */
+nav,
+aside {
+  font-size: 11px;
+}
+
+/* General text */
+.text-xs {
+  font-size: 10px !important;
+}
+
+.text-sm {
+  font-size: 11px !important;
+}
+
+.text-base {
+  font-size: 12px !important;
+}
+
+.text-lg {
+  font-size: 14px !important;
+}
+
+.text-xl {
+  font-size: 16px !important;
+}
+
+.text-2xl {
+  font-size: 18px !important;
+}
+
+.text-3xl {
+  font-size: 20px !important;
+}
+
+/* Tables */
+table {
+  font-size: 10px;
+}
+
+th {
+  font-size: 9px !important;
+}
+
+td {
+  font-size: 10px !important;
+}
+
+/* Form controls */
+input,
+select,
+textarea {
+  font-size: 11px !important;
+}
+
+/* Buttons */
+button {
+  font-size: 10px;
+}
+
+/* Labels */
+label {
+  font-size: 10px;
+}
+
+/* Badges / status */
+.badge,
+.status,
+[class*="badge"] {
+  font-size: 9px;
+}
+
+/* Secondary/meta information */
+.text-slate-400,
+.text-slate-500,
+.text-gray-400,
+.text-gray-500 {
+  font-size: 10px;
+}

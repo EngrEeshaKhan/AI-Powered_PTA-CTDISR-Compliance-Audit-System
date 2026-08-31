@@ -12,6 +12,36 @@
     "status": "active",
     "version": "1.0",
     "created_at": "2026-08-20T07:30:35.438368+00:00",
-    "updated_at": "2026-08-20T07:30:35.438368+00:00"
+    "updated_at": "2026-08-30T11:35:46.081686+00:00"
+  },
+  {
+    "control_id": "4.1",
+    "control_level": "CL1",
+    "control_description": "Licensee shall constitute steering committee comprising of high-level representation from key operational areas, to govern and ensure the implementation of Cybersecurity initiatives",
+    "interpretation": "The auditor should determine the presence of the steering committee and assess action items proposed by the committee and its current status, as well as the effectiveness of the steering committee in terms of timely approval of IS policies",
+    "pta_response": "",
+    "pta_recommendations": "",
+    "action_by": "",
+    "ntc_comments": "",
+    "source_document": "",
+    "status": "active",
+    "version": "1.0",
+    "created_at": "2026-08-25T06:27:16.592248+00:00",
+    "updated_at": "2026-08-25T06:27:16.592248+00:00"
+  },
+  {
+    "control_id": "4.2",
+    "control_level": "CL1",
+    "control_description": "Keeping in view the requirements of these regulations, necessary policies shall be defined, approved, and communicated by the licensee to its employees and other stakeholders such as partners, contractors, and any other entity having an interface with its telecom data/infrastructure to ensure compliance with these regulations",
+    "interpretation": "\"The auditor should determine if the following is present: i. Organization-level security policy should be formulated and implemented. \nii. The scope of security policy should explicitly cover Critical Telecom Infrastructure and related components, people, and processes.\niii. Organization-level and system-level security documentation should be created where required. e.g. system plans, system configurations, network plans, SOPs, etc.\niv. The organization-level security policy should be approved by the Board (Senior Management). v. Organization-level security documentation should be approved by the CISO/Head of Department. vi. Security policies and documentation, including notification of subsequent changes, should be communicated to all stakeholders on time.\"",
+    "pta_response": "",
+    "pta_recommendations": "",
+    "action_by": "",
+    "ntc_comments": "",
+    "source_document": "",
+    "status": "active",
+    "version": "1.0",
+    "created_at": "2026-08-30T10:16:37.137286+00:00",
+    "updated_at": "2026-08-30T10:16:37.137286+00:00"
   }
 ]

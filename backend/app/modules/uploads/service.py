@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
 from typing import Any
@@ -257,16 +258,16 @@ def register_document(
     file_path: Path,
 ) -> None:
     """
-    Persist the relationship:
-
-        document_id
-            ↓
-        file
-            ↓
-        category
+    Persist complete document metadata.
     """
 
     registry = _load_registry()
+
+    file_size = (
+        file_path.stat().st_size
+        if file_path.exists()
+        else 0
+    )
 
     registry[document_id] = {
         "document_id": document_id,
@@ -274,6 +275,10 @@ def register_document(
         "category": category.value,
         "file_path": str(file_path),
         "extension": file_path.suffix.lower(),
+        "file_size": file_size,
+        "uploaded_at": datetime.now(
+            timezone.utc
+        ).isoformat(),
         "status": "uploaded",
     }
 
@@ -301,6 +306,99 @@ def get_document(
 
 
 # =========================================================
+# LIST DOCUMENTS
+# =========================================================
+
+def list_documents() -> list[dict[str, Any]]:
+    """
+    Return all registered documents.
+    """
+
+    registry = _load_registry()
+
+    return list(
+        registry.values()
+    )
+
+
+# =========================================================
+# UPDATE DOCUMENT STATUS
+# =========================================================
+
+def update_document_status(
+    document_id: str,
+    status: str,
+) -> dict[str, Any] | None:
+    """
+    Update the processing status of a
+    registered document.
+    """
+
+    registry = _load_registry()
+
+    document = registry.get(
+        document_id
+    )
+
+    if document is None:
+        return None
+
+    document["status"] = status
+
+    registry[document_id] = document
+
+    _save_registry(
+        registry
+    )
+
+    return document
+
+
+# =========================================================
+# DELETE DOCUMENT
+# =========================================================
+
+def delete_document(
+    document_id: str,
+) -> dict[str, Any] | None:
+    """
+    Delete a document from physical storage
+    and remove its registry entry.
+
+    NOTE:
+    Vector-index cleanup must be handled separately
+    before this becomes the final production delete flow.
+    """
+
+    registry = _load_registry()
+
+    document = registry.get(
+        document_id
+    )
+
+    if document is None:
+        return None
+
+    file_path = Path(
+        document["file_path"]
+    )
+
+    if file_path.exists():
+
+        file_path.unlink()
+
+    del registry[
+        document_id
+    ]
+
+    _save_registry(
+        registry
+    )
+
+    return document
+
+
+# =========================================================
 # SAVE UPLOADED FILE
 # =========================================================
 
@@ -311,7 +409,7 @@ async def save_uploaded_file(
     """
     Validate and permanently save an uploaded document.
 
-    This function performs ONLY:
+    This function performs:
 
         Upload
         ↓
@@ -427,7 +525,6 @@ async def save_uploaded_file(
 
     except Exception:
 
-        # Remove incomplete file if saving fails.
         if destination.exists():
             destination.unlink()
 
@@ -448,11 +545,19 @@ async def save_uploaded_file(
     # 10. RETURN DOCUMENT INFORMATION
     # -----------------------------------------------------
 
-    return {
+    document = get_document(
+        document_id
+    )
+
+    return document or {
         "document_id": document_id,
         "file_name": safe_filename,
         "category": category.value,
         "file_path": str(destination),
         "extension": destination.suffix.lower(),
+        "file_size": destination.stat().st_size,
+        "uploaded_at": datetime.now(
+            timezone.utc
+        ).isoformat(),
         "status": "uploaded",
     }

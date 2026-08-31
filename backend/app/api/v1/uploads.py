@@ -8,10 +8,17 @@ from fastapi import (
     UploadFile,
 )
 
-from app.ai.processing.document_processor import DocumentProcessor
+from app.ai.processing.document_processor import (
+    DocumentProcessor,
+)
+
 from app.modules.uploads.service import (
     DocumentCategory,
+    delete_document,
+    get_document,
+    list_documents,
     save_uploaded_file,
+    update_document_status,
 )
 
 
@@ -20,6 +27,10 @@ router = APIRouter(
     tags=["Uploads"],
 )
 
+
+# =========================================================
+# UPLOAD + PROCESS DOCUMENT
+# =========================================================
 
 @router.post(
     "/",
@@ -31,31 +42,11 @@ async def upload_document(
 ):
     """
     Upload and automatically process a document.
-
-    Complete workflow:
-
-        User selects category + file
-                    ↓
-              Validate file
-                    ↓
-              Save original
-                    ↓
-           Register document
-                    ↓
-           Create document ID
-                    ↓
-             Correct chunker
-                    ↓
-               Embeddings
-                    ↓
-          Persistent vector store
-                    ↓
-          Return processing result
     """
 
-    # =========================================================
-    # 1. SAVE UPLOADED DOCUMENT
-    # =========================================================
+    # =====================================================
+    # 1. SAVE DOCUMENT
+    # =====================================================
 
     try:
 
@@ -88,18 +79,34 @@ async def upload_document(
             ),
         )
 
-    # =========================================================
-    # 2. GET SAVED DOCUMENT INFORMATION
-    # =========================================================
+    document_id = upload_result[
+        "document_id"
+    ]
 
-    document_id = upload_result["document_id"]
-    file_path = upload_result["file_path"]
-    document_category = upload_result["category"]
-    file_name = upload_result["file_name"]
+    file_path = upload_result[
+        "file_path"
+    ]
 
-    # =========================================================
-    # 3. AUTOMATICALLY PROCESS DOCUMENT
-    # =========================================================
+    document_category = upload_result[
+        "category"
+    ]
+
+    file_name = upload_result[
+        "file_name"
+    ]
+
+    # =====================================================
+    # 2. MARK PROCESSING
+    # =====================================================
+
+    update_document_status(
+        document_id,
+        "processing",
+    )
+
+    # =====================================================
+    # 3. PROCESS DOCUMENT
+    # =====================================================
 
     try:
 
@@ -128,11 +135,12 @@ async def upload_document(
             document_type=document_category,
         )
 
-    # ---------------------------------------------------------
-    # PROCESSING FAILED
-    # ---------------------------------------------------------
-
     except FileNotFoundError as exc:
+
+        update_document_status(
+            document_id,
+            "processing_failed",
+        )
 
         return {
             "success": False,
@@ -151,6 +159,11 @@ async def upload_document(
 
     except ValueError as exc:
 
+        update_document_status(
+            document_id,
+            "processing_failed",
+        )
+
         return {
             "success": False,
             "message": (
@@ -167,6 +180,11 @@ async def upload_document(
 
     except Exception as exc:
 
+        update_document_status(
+            document_id,
+            "processing_failed",
+        )
+
         return {
             "success": False,
             "message": (
@@ -182,11 +200,19 @@ async def upload_document(
             "error": str(exc),
         }
 
-    # =========================================================
+    # =====================================================
     # 4. CHECK PROCESSING RESULT
-    # =========================================================
+    # =====================================================
 
-    if not processing_result.get("success", False):
+    if not processing_result.get(
+        "success",
+        False,
+    ):
+
+        update_document_status(
+            document_id,
+            "processing_failed",
+        )
 
         return {
             "success": False,
@@ -202,9 +228,18 @@ async def upload_document(
             "processing": processing_result,
         }
 
-    # =========================================================
-    # 5. COMPLETE SUCCESS
-    # =========================================================
+    # =====================================================
+    # 5. MARK PROCESSED
+    # =====================================================
+
+    update_document_status(
+        document_id,
+        "processed",
+    )
+
+    # =====================================================
+    # 6. COMPLETE SUCCESS
+    # =====================================================
 
     return {
         "success": True,
@@ -217,4 +252,98 @@ async def upload_document(
         "file_path": file_path,
         "status": "processed",
         "processing": processing_result,
+    }
+
+
+# =========================================================
+# LIST DOCUMENTS
+# =========================================================
+
+@router.get(
+    "/",
+    summary="List uploaded documents",
+)
+async def get_documents():
+    """
+    Return all registered documents.
+    """
+
+    documents = list_documents()
+
+    return {
+        "success": True,
+        "count": len(documents),
+        "documents": documents,
+    }
+
+
+# =========================================================
+# DOCUMENT DETAILS
+# =========================================================
+
+@router.get(
+    "/{document_id}",
+    summary="Get document metadata",
+)
+async def get_document_details(
+    document_id: str,
+):
+    """
+    Return metadata for one document.
+    """
+
+    document = get_document(
+        document_id
+    )
+
+    if document is None:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Document not found.",
+        )
+
+    return {
+        "success": True,
+        "document": document,
+    }
+
+
+# =========================================================
+# DELETE DOCUMENT
+# =========================================================
+
+@router.delete(
+    "/{document_id}",
+    summary="Delete uploaded document",
+)
+async def remove_document(
+    document_id: str,
+):
+    """
+    Delete a document from storage
+    and remove its registry entry.
+
+    NOTE:
+    Vector-index cleanup will be added before
+    exposing the final Delete action in React.
+    """
+
+    document = delete_document(
+        document_id
+    )
+
+    if document is None:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Document not found.",
+        )
+
+    return {
+        "success": True,
+        "message": (
+            "Document deleted successfully."
+        ),
+        "document": document,
     }
