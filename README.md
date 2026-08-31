@@ -4,4 +4,4 @@
 ### Intelligent Compliance Auditing • Retrieval-Augmented Generation • Fine-Tuned LLM • Enterprise Knowledge Management
 
 ```{=html}
-<p>
+
