@@ -102,21 +102,7 @@ Supported file formats:
 
 ------------------------------------------------------------------------
 
-## 2. Document Parsing
-
-The backend extracts structured information from uploaded documents.
-
-Examples:
-
-``` text
-PDF
- └── Text extraction
-
-DOCX
- └── Paragraph/table extraction
-
-XLSX
- └── Worksheet + row/column extraction
+## 2. 
 ```
 
 ------------------------------------------------------------------------
