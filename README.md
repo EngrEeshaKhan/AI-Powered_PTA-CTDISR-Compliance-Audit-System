@@ -5,18 +5,7 @@
 ----------
 The system combines:
 
--   **Knowledge Base Management**
--   **Document Processing**
--   **Semantic Chunking
--   **Enterprise Dashboard**
--   **Document and Control Management**
-
-Instead of manually
-## 🎯 Project Goals
-
-The system is designed around five major goals:
-
-  -----------------------------------------------------------------------
+-   **Knowledge B-------------------------------
   Goal                                Description
   ----------------------------------- -----------------------------------
   📚 Centralized Knowledge            Maintain policies, advisories,
