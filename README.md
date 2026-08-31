@@ -10,14 +10,7 @@
 <p>
 ```
 `<img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch">`{=html}
-`<img src="https://img.shields.io/badge/Hugging%20Face-Transformers-FFD21E?style=for-the-badge&logo=huggingface&logoColor=111111" alt="Transformers">`{=html}
-`<img src="https://img.shields.io/badge/PEFT-LoRA%2FQLoRA-FFB000?style=for-the-badge" alt="PEFT">`{=html}
-`<img src="https://img.shields.io/badge/Sentence--Transformers-Embeddings-22C55E?style=for-the-badge" alt="Sentence Transformers">`{=html}
-```{=html}
-</p>
-```
-```{=html}
-<p>FF?style=for-the-badge&logo=mui&logoColor=white" alt="Material UI">`{=html}
+`<img src="https://img.shields.io/badge/Hugging
 `<img src="https://img.shields.io/badge/Axios-HTTP%20Client-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios">`{=html}
 `<img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">`{=html}
 ```{=html}
