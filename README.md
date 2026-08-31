@@ -28,13 +28,7 @@ The system combines:
 -   **Enterprise Dashboard**
 -   **Document and Control Management**
 
-Instead of manually searching through policies, advisories, CTDISR
-controls, and supporting documentation, an auditor can use the platform
-to retrieve relevant evidence and generate an AI-assisted audit
-response.
-
-------------------------------------------------------------------------
-
+Instead of manually
 ## 🎯 Project Goals
 
 The system is designed around five major goals:
