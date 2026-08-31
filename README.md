@@ -1,21 +1,7 @@
 ::: {align="center"}
 # AI-Powered PTA CTDISR Compliance Audit System
 
---------
-
-------------------------------------------------------------------------
-
-# 🏗️ System Architecture
-
-The high-level processing flow is:
-
-``` text
-                    ┌───────────────────────────┐
-                    │      Knowledge Sources    │
-                    │                           │
-                    │ Policies                  │
-                    │ Advisories                │
-                    │ CTDISR Documents          │
+-------
                     │ Asset Documents           │
                     └─────────────┬─────────────┘
                                   │
