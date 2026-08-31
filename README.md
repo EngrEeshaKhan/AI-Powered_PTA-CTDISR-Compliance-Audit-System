@@ -151,19 +151,7 @@ CTDISR Control
 Search Query
       ↓
 Embedding
-      ↓
-FAISS Similarity Search
-      ↓
-Top-K Relevant Knowledge Chunks
-```
-
-------------------------------------------------------------------------
-
-# 🤖 LLM / Generative AI
-
-The project uses a **Llama 3.2 Instruct** model with a project-specific
-LoRA adapter.
-
+  
 The fine-tuning workflow uses:
 
 -   PyTorch
