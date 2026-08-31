@@ -7,15 +7,7 @@ The system combines:
 
 -   **Knowledge Base Management**
 -   **Document Processing**
--   **Semantic Chunking**
--   **Sentence-Transformer Embeddings**
--   **FAISS Vector Search**
--   **Retrieval-Augmented Generation (RAG)**
--   **Fine-Tuned Llama 3.2**
--   **LoRA / QLoRA**
--   **AI-Assisted CTDISR Auditing**
--   **Auditor Review Workflows**
--   **Role-Based Access**
+-   **Semantic Chunking
 -   **Enterprise Dashboard**
 -   **Document and Control Management**
 
