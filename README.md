@@ -154,16 +154,6 @@ Embedding
   
 The fine-tuning workflow uses:
 
--   PyTorch
--   Hugging Face Transformers
--   PEFT
--   LoRA / QLoRA
--   TRL
--   Hugging Face Datasets
--   4-bit quantization during GPU training/inference where supported
-
-The model is trained to understand the structure of PTA CTDISR audit
-information.
 
 ### Training data structure
 
