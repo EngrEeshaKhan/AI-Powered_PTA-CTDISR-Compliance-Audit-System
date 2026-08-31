@@ -3,20 +3,7 @@
 
 
 ----------
-The system combines:
-
--   **Knowledge B-------------------------------
-  Goal                                Description
-  ----------------------------------- -----------------------------------
-  📚 Centralized Knowledge            Maintain policies, advisories,
-                                      CTDISR documents and asset
-                                      information in one knowledge base
-
-  🔎 Intelligent Retrieval            Retrieve the most relevant
-                                      compliance evidence using semantic
-                                      vector search
-
-  🤖 AI Audit Assistance              Use a fine-tuned LLM to produce
+The system combines:ce
                                       structured PTA-style audit
                                       assistance
 
