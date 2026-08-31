@@ -286,23 +286,7 @@ frontend/
 │   ├── layouts/
 │   │   └── AppLayout.jsx
 │   │
-│   ├── pages/
-│   │   ├── LoginPage.jsx
-│   │   ├── DashboardPage.jsx
-│   │   ├── DocumentsPage.jsx
-│   │   ├── ControlsPage.jsx
-│   │   ├── ControlDetailsPage.jsx
-│   │   ├── AuditsPage.jsx
-│   │   ├── AuditDetailsPage.jsx
-│   │   └── UsersPage.jsx
-│   │
-│   ├── routes/
-│   │   └── AppRoutes.jsx
-│   │
-│   ├── services/
-│   │   ├── api.js
-│   │   ├── documents.service.js
-│   │   ├── controls.service.js
+│   ├── page
 │   │   └── ...
 │   │
 │   ├── App.jsx
