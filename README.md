@@ -55,3 +55,5 @@ Instead of manually cross-referencing dozens of policy documents, advisories, an
 2. Retrieves the evidence most relevant to a specific control using semantic (embedding-based) search.
 3. Feeds that evidence into a fine-tuned local LLM, which drafts a structured audit finding.
 4. Hands the draft to a human auditor, who reviews, edits, and finalizes it.
+
+The system is designed to run **entirely offline** — no evidence, control data, or generated findings are sent to any external API. This matters for a regulator/telecom compliance context where the underlying documents may be sensitive.
