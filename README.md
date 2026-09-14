@@ -61,3 +61,5 @@ The system is designed to run **entirely offline** — no evidence, control data
 **Design philosophy:** the AI is an assistant, not a decision-maker. Every AI-generated finding is explicitly labeled and must pass through an auditor review step (`Draft → Generated → Reviewed → Finalized`) before it counts as an official result.
 
 ## 2. Problem Statement
+
+- CTDISR compliance audits require cross-referencing dozens of policy/advisory documents against each control, often manually, using search-in-PDF or spreadsheet lookups.
