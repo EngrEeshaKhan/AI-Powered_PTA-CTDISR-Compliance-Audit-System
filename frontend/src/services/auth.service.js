@@ -14,3 +14,4 @@ export async function createUser(payload) {
   const { data } = await api.post("/auth/users", payload);
   return data;
 }
+
