@@ -17,3 +17,31 @@
 ---
 
 ## Table of Contents
+1. [Project Overview](#1-project-overview)
+2. [Problem Statement](#2-problem-statement)
+3. [Project Objectives](#3-project-objectives)
+4. [System Architecture](#4-system-architecture)
+5. [Phase 1 — Project Foundation](#5-phase-1--project-foundation)
+6. [Phase 2 — Knowledge Base & Document Processing](#6-phase-2--knowledge-base--document-processing)
+7. [Phase 3 — Vector Database & RAG](#7-phase-3--vector-database--rag)
+8. [Phase 4 — CTDISR Framework & Controls](#8-phase-4--ctdisr-framework--controls)
+9. [Phase 5 — AI-Powered Audit Generation](#9-phase-5--ai-powered-audit-generation-core-of-the-project)
+10. [Phase 6 — Auditor Review & Reporting](#10-phase-6--auditor-review--reporting)
+11. [Phase 7 — Frontend, Security & Deployment](#11-phase-7--frontend-security--deployment)
+12. [Screenshots](#12-screenshots)
+13. [Technology Stack](#13-technology-stack)
+14. [Project Structure](#14-project-structure)
+15. [Data Model / Storage Schemas](#15-data-model--storage-schemas)
+16. [API Documentation](#16-api-documentation)
+17. [Installation](#17-installation)
+18. [Configuration & Environment Variables](#18-configuration--environment-variables)
+19. [Docker Deployment](#19-docker-deployment)
+20. [Git, GitHub & CI/CD Workflow](#20-git-github--cicd-workflow)
+21. [User Roles & Permissions](#21-user-roles--permissions)
+22. [Security Considerations](#22-security-considerations)
+23. [Known Issues & Troubleshooting](#23-known-issues--troubleshooting)
+24. [Current Status](#24-current-status)
+25. [Future Improvements](#25-future-improvements)
+26. [Author](#26-author)
+
+---
