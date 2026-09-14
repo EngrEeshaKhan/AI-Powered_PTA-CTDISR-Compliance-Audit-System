@@ -47,3 +47,5 @@
 ---
 
 ## 1. Project Overview
+
+The **AI-Powered PTA-CTDISR Compliance Audit System** is a local/offline platform that helps NTC (National Telecommunication Corporation) auditors evaluate PTA/licensee compliance against the **CTDISR (Cyber & Telecom Data & Information Security Regulation)** framework.
