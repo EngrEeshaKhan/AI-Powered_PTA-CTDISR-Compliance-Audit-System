@@ -54,3 +54,4 @@ Instead of manually cross-referencing dozens of policy documents, advisories, an
 1. Indexes all organizational evidence (policies, advisories, CTDISR text, asset inventories) into a searchable knowledge base.
 2. Retrieves the evidence most relevant to a specific control using semantic (embedding-based) search.
 3. Feeds that evidence into a fine-tuned local LLM, which drafts a structured audit finding.
+4. Hands the draft to a human auditor, who reviews, edits, and finalizes it.
