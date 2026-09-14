@@ -1,9 +1,11 @@
+
 from fastapi import FastAPI
 
 from app.api.v1.auth import router as auth_router
 from app.api.v1.uploads import router as uploads_router
 from app.api.v1.ctdisr import router as ctdisr_router
 from app.api.v1.dashboard import router as dashboard_router
+from app.api.v1.reports import router as reports_router
 
 from app.modules.audits.json_audit_router import (
     router as saved_audit_router,
@@ -74,6 +76,16 @@ app.include_router(
 
 app.include_router(
     dashboard_router,
+    prefix="/api/v1",
+)
+
+
+# ---------------------------------------------------------
+# Reports
+# ---------------------------------------------------------
+
+app.include_router(
+    reports_router,
     prefix="/api/v1",
 )
 

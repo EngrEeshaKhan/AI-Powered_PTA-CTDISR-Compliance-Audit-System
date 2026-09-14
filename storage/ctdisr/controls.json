@@ -43,5 +43,21 @@
     "version": "1.0",
     "created_at": "2026-08-30T10:16:37.137286+00:00",
     "updated_at": "2026-08-30T10:16:37.137286+00:00"
+  },
+  
+  {
+    "control_id": "4.3",
+    "control_level": "CL1",
+    "control_description": "The policies mentioned in point 4(2) shall be regularly reviewed by the licensee at planned intervals or upon any significant change/event.",
+    "interpretation": "Auditors should assess if the policies are reviewed at planned intervals and are periodically updated in the light of the organization's internal “Information Security Policy”. The auditor should also review if the criteria of the policy review have been clearly defined in the document.",
+    "pta_response": "",
+    "pta_recommendations": "",
+    "action_by": "",
+    "ntc_comments": "",
+    "source_document": "",
+    "status": "active",
+    "version": "1.0",
+    "created_at": "2026-09-04T06:16:17.412697+00:00",
+    "updated_at": "2026-09-04T06:16:17.412697+00:00"
   }
 ]
