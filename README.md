@@ -52,4 +52,4 @@ The **AI-Powered PTA-CTDISR Compliance Audit System** is a local/offline platfor
 Instead of manually cross-referencing dozens of policy documents, advisories, and asset inventories against every control in the framework, the system:
 
 1. Indexes all organizational evidence (policies, advisories, CTDISR text, asset inventories) into a searchable knowledge base.
-
+2. Retrieves the evidence most relevant to a specific control using semantic (embedding-based) search.
