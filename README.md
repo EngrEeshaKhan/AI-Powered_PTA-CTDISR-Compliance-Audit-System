@@ -59,3 +59,5 @@ Instead of manually cross-referencing dozens of policy documents, advisories, an
 The system is designed to run **entirely offline** — no evidence, control data, or generated findings are sent to any external API. This matters for a regulator/telecom compliance context where the underlying documents may be sensitive.
 
 **Design philosophy:** the AI is an assistant, not a decision-maker. Every AI-generated finding is explicitly labeled and must pass through an auditor review step (`Draft → Generated → Reviewed → Finalized`) before it counts as an official result.
+
+## 2. Problem Statement
