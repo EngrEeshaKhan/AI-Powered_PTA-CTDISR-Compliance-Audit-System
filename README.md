@@ -375,3 +375,207 @@ project-root/
 └── docs/
     └── screenshots/
 ```
+
+
+## 15. Data Model / Storage Schemas
+
+**Control record** (`storage/ctdisr/controls.json`)
+```json
+{
+  "control_id": "3.1",
+  "control_level": "CL1",
+  "control_description": "string",
+  "control_interpretation": "string",
+  "active": true
+}
+```
+
+**Audit record** (`storage/audits/audit_results.json`)
+```json
+{
+  "audit_id": "uuid-or-generated-id",
+  "control_id": "3.1",
+  "control_level": "CL1",
+  "status": "Draft | Generated | Reviewed | Finalized",
+  "evidence": [
+    { "source": "policies", "chunk": "..." }
+  ],
+  "pta_response": "string",
+  "pta_recommendations": "string",
+  "action_by": "string",
+  "ntc_comments": "string",
+  "created_at": "ISO-8601 timestamp",
+  "updated_at": "ISO-8601 timestamp"
+}
+```
+
+**Document metadata** (`storage/vectors/knowledge_metadata.json`)
+```json
+{
+  "chunk_id": "string",
+  "source_filename": "string",
+  "category": "policies | advisories | ctdisr | assets",
+  "chunk_index": 0,
+  "status": "Uploaded | Processing | Processed | Processing Failed"
+}
+```
+
+## 16. API Documentation
+
+**Uploads**
+```
+GET    /api/v1/uploads/                    # list all uploaded documents
+POST   /api/v1/uploads/                    # upload + trigger processing (parse/chunk/embed)
+GET    /api/v1/uploads/{document_id}       # get a single document's metadata/status
+DELETE /api/v1/uploads/{document_id}       # remove a document and its indexed chunks
+```
+
+**CTDISR Controls**
+```
+GET    /api/v1/ctdisr/controls                       # list active controls (Auditor + Admin)
+POST   /api/v1/ctdisr/controls                        # create a control (Admin only)
+PUT    /api/v1/ctdisr/controls/{control_id}            # update a control (Admin only)
+DELETE /api/v1/ctdisr/controls/{control_id}            # deactivate a control (Admin only) — sets active=false
+POST   /api/v1/ctdisr/controls/{control_id}/audit      # run an AI audit against this control
+```
+
+Example request body for running an audit:
+```json
+{
+  "top_k": 5,
+  "max_new_tokens": 512
+}
+```
+
+Example response:
+```json
+{
+  "success": true,
+  "audit_id": "aud_001",
+  "control_id": "3.1",
+  "status": "Generated",
+  "pta_response": "...",
+  "pta_recommendations": "...",
+  "action_by": "..."
+}
+```
+
+**Reports**
+```
+GET /api/v1/reports              # list saved audits
+GET /api/v1/reports/{audit_id}   # single audit detail
+```
+
+Example list response:
+```json
+{
+  "success": true,
+  "count": 3,
+  "results": [
+    { "audit_id": "aud_001", "control_id": "3.1", "status": "Finalized", "...": "..." }
+  ]
+}
+```
+
+**Dashboard**
+```
+GET /api/v1/dashboard   # aggregated stats: document counts by category, control count,
+                         # audit counts by status, AI engine status, KB status
+```
+
+> ⚠️ **Known integration gap:** the frontend service layer currently references an older `/audit-results` route, while the backend's actual reports contract is `/api/v1/reports`. This needs to be aligned — update the frontend API client rather than re-adding a legacy backend route.
+
+Interactive API documentation is available via FastAPI's built-in Swagger UI at `/docs` once the backend is running (e.g. `http://localhost:8000/docs`).
+
+## 17. Installation
+
+**Prerequisites**
+- Python 3.10.x
+- Node.js (LTS) + npm
+- Git
+- (Optional, for GPU fine-tuning only) CUDA-capable GPU / Google Colab — not required to *run* the system, only to retrain the LoRA adapter
+
+**Backend setup**
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS/Linux
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+Backend will be available at `http://localhost:8000`, with Swagger docs at `http://localhost:8000/docs`.
+
+**Frontend setup**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Frontend will be available at `http://localhost:5173` (default Vite port).
+
+**Model setup**
+
+Ensure the local model directories exist and are populated before starting the backend:
+```
+models/llama-3.2-1b-instruct/
+models/pta-llama-3.2-1b-lora/final/
+```
+If these are not present, download/copy them from your training environment (Colab output) before first run.
+
+## 18. Configuration & Environment Variables
+
+Recommended `.env` structure for the backend (adjust to match actual config loading in `app/`):
+
+```env
+# Server
+APP_ENV=local
+APP_PORT=8000
+
+# Storage paths
+STORAGE_DIR=./storage
+MODELS_DIR=./models
+
+# Model
+BASE_MODEL_PATH=./models/llama-3.2-1b-instruct
+LORA_ADAPTER_PATH=./models/pta-llama-3.2-1b-lora/final
+DEFAULT_TOP_K=5
+DEFAULT_MAX_NEW_TOKENS=512
+
+# Embeddings
+EMBEDDING_MODEL=all-MiniLM-L6-v2
+EMBEDDING_DIM=384
+```
+
+For the frontend, a `.env` file controlling the API base URL:
+```env
+VITE_API_BASE_URL=http://localhost:8000/api/v1
+```
+
+## 19. Docker Deployment
+
+```bash
+docker compose build
+docker compose up
+```
+
+- `docker-compose.yml` must live at the **project root**, not inside `backend/`. (Verified via PowerShell: `Test-Path .\backend\docker-compose.yml` → `false`, `Test-Path .\docker-compose.yml` → `true`.)
+- The backend container mounts local `./storage` and `./models` directories as volumes, so the knowledge base and model weights don't need to be baked into the image and persist across container rebuilds.
+- **Docker Desktop must be running** before `docker compose up` — a common early error was the Docker engine being unreachable simply because Docker Desktop itself hadn't been started.
+- Example service layout in `docker-compose.yml`:
+  ```yaml
+  services:
+    backend:
+      build: ./backend
+      ports:
+        - "8000:8000"
+      volumes:
+        - ./storage:/app/storage
+        - ./models:/app/models
+    frontend:
+      build: ./frontend
+      ports:
+        - "5173:5173"
+      depends_on:
+        - backend
+  ```
