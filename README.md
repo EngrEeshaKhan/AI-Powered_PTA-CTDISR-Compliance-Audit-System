@@ -683,3 +683,4 @@ The system supports exactly two roles.
 **Bottom line:** the major technical pieces are already in place — RAG + FAISS + local documents + CTDISR controls + fine-tuned Llama + FastAPI + saved audits + React frontend + Docker. Remaining work is integration, correctness, security enforcement, UI polish, reporting/export, deployment, and testing — not building the core system from scratch.
 
 ## 25. Future Improvements
+- Complete Excel/PDF export for finalized audit reports.
