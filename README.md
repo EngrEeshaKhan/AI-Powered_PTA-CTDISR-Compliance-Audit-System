@@ -297,3 +297,16 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 > Store all documentation images under `docs/screenshots/` — not in `storage/` or `frontend/public/` — to keep documentation assets separate from application data. Recommended filenames are shown above; keep them in sync with the `alt`/path in each `![...]()` tag if you rename anything.
 
 ---
+
+## 13. Technology Stack
+
+**Backend**
+| Component | Choice | Notes |
+|---|---|---|
+| Framework | FastAPI | Python 3.10.x |
+| Storage | Local JSON files | SQLAlchemy/psycopg present in dependencies but PostgreSQL not yet confirmed as active runtime |
+| Vector search | FAISS | Local, in-process index |
+| Embeddings | `all-MiniLM-L6-v2` | 384-dimensional |
+| LLM | Llama 3.2 (3B fine-tuned / 1B local fallback) | LoRA/QLoRA adapter |
+| Document parsing | PDF / DOCX / Excel parsers | Category-tagged ingestion |
+| Containerization | Docker | Backend + frontend services |
