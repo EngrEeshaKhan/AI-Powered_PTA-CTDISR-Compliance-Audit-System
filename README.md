@@ -327,3 +327,51 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 - Git / GitHub for version control
 - GitHub Actions (planned/being set up) for CI/CD
 - Docker Compose for local/offline orchestration
+
+
+## 14. Project Structure
+
+```
+project-root/
+├── docker-compose.yml
+├── backend/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── app/
+│       ├── main.py
+│       └── api/
+│           └── v1/
+│               ├── uploads.py
+│               ├── ctdisr.py
+│               ├── dashboard.py
+│               └── reports.py
+├── frontend/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── src/
+│       ├── components/
+│       ├── pages/
+│       ├── context/          # auth context, etc.
+│       └── services/         # API client layer
+├── models/
+│   ├── llama-3.2-1b-instruct/
+│   └── pta-llama-3.2-1b-lora/
+│       └── final/
+├── storage/
+│   ├── documents/
+│   │   ├── policies/
+│   │   ├── advisories/
+│   │   ├── ctdisr/
+│   │   └── assets/
+│   ├── vectors/
+│   │   ├── knowledge.index
+│   │   └── knowledge_metadata.json
+│   ├── cache/
+│   │   └── embeddings/
+│   ├── ctdisr/
+│   │   └── controls.json
+│   └── audits/
+│       └── audit_results.json
+└── docs/
+    └── screenshots/
+```
