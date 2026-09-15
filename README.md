@@ -634,3 +634,22 @@ The system supports exactly two roles.
 - The system is designed to run fully offline/local — no evidence documents, control text, or generated findings are sent to third-party AI APIs.
 - Authentication context on the frontend gates route access by role; this should be paired with server-side role checks on every protected endpoint (not just relied upon client-side).
 - Deactivating a control (rather than hard-deleting) preserves the audit trail for any historical audits run against it.
+
+
+## 23. Known Issues & Troubleshooting
+
+**PyTorch DLL / import error on Windows when running `uvicorn app.main:app --reload`**
+- This is an **environment/dependency issue**, not an architectural problem with the audit pipeline. It typically stems from a mismatched PyTorch build (CPU vs CUDA wheel) or a missing Visual C++ Redistributable on Windows.
+- Suggested fix path: confirm the installed `torch` wheel matches the machine (CPU-only build if no CUDA GPU is present), reinstall inside a clean virtual environment, and verify the Microsoft Visual C++ Redistributable is installed.
+
+**`docker-compose.yml` not found**
+- Confirm the file is at the **project root**, not inside `backend/`. Use `Test-Path .\docker-compose.yml` (PowerShell) or `ls docker-compose.yml` (bash) to verify before running `docker compose up`.
+
+**Docker engine unreachable**
+- Ensure **Docker Desktop is actually running** (not just installed) before invoking any `docker` or `docker compose` command.
+
+**Frontend reports page shows nothing / errors**
+- Check that the frontend API client is pointed at `/api/v1/reports`, not the older `/audit-results` path.
+
+**Model path errors at inference time**
+- Check for stale references to the original 3B model path where the active local setup actually uses the 1B fallback (`models/llama-3.2-1b-instruct` + `models/pta-llama-3.2-1b-lora/final`).
