@@ -687,3 +687,13 @@ The system supports exactly two roles.
 - Finish aligning frontend reports/history wiring to the `/reports` API contract.
 - Full role-based UI enforcement (hide admin-only routes/components from Auditors both visually and via route guards).
 - Resolve the local Windows PyTorch DLL/import issue blocking `uvicorn app.main:app --reload` in some environments.
+- Finalize the Docker Compose setup and stand up the GitHub Actions CI/CD pipeline (install → test → build → push/deploy).
+- Clean up model path inconsistencies between the original 3B fine-tune references and the active local 1B fallback model.
+- Evaluate whether PostgreSQL should formally replace JSON storage as the system scales beyond a single-machine deployment.
+- Add automated tests (backend unit/integration tests, frontend component tests) to support the CI pipeline.
+- Add audit logging (who ran/edited/finalized which audit, and when) for compliance traceability of the tool itself.
+
+## 26. Author
+
+**Eesha Khan**
+Repository: [`EngrEeshaKhan/AI-Powered_PTA-CTDISR-Compliance-Audit-System`](https://github.com/EngrEeshaKhan/AI-Powered_PTA-CTDISR-Compliance-Audit-System)
