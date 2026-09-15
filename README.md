@@ -68,3 +68,4 @@ The system is designed to run **entirely offline** — no evidence, control data
 - Existing generic AI tools (ChatGPT, etc.) cannot be used directly for this because the source documents are sensitive/internal and cannot be uploaded to third-party services.
 
 ## 3. Project Objectives
+- Provide a centralized, offline knowledge base of policies, advisories, CTDISR controls, and asset inventories, organized by category.
