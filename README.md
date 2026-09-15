@@ -653,3 +653,31 @@ The system supports exactly two roles.
 
 **Model path errors at inference time**
 - Check for stale references to the original 3B model path where the active local setup actually uses the 1B fallback (`models/llama-3.2-1b-instruct` + `models/pta-llama-3.2-1b-lora/final`).
+
+## 24. Current Status
+
+| Area | State |
+|---|---|
+| FastAPI backend | 🟢 Substantially implemented |
+| Local document storage | 🟢 Implemented |
+| PDF/DOCX/Excel ingestion | 🟢 Implemented |
+| Embeddings | 🟢 Implemented |
+| FAISS | 🟢 Implemented |
+| CTDISR controls | 🟢 Implemented |
+| RAG retrieval | 🟢 Implemented |
+| Llama inference | 🟢 Implemented (CPU limitations) |
+| LoRA model | 🟢 Trained |
+| Upload API | 🟢 Implemented |
+| Audit API | 🟢 Implemented |
+| Saved audits | 🟢 Implemented |
+| Reports API | 🟢 Implemented |
+| React UI | 🟡 Actively being wired |
+| Reports frontend | 🟡 Needs API alignment (`/audit-results` → `/reports`) |
+| Excel/PDF export | 🟡 Planned / in progress |
+| Role-based UI | 🟡 Needs complete enforcement/polish |
+| Docker | 🟡 Being finalized/tested |
+| CI/CD | 🟡 Learning/setting up |
+| PostgreSQL | ⚪ Not confirmed as runtime storage |
+| Windows PyTorch environment | 🔴 DLL/import issue (environment-level, not architectural) |
+
+**Bottom line:** the major technical pieces are already in place — RAG + FAISS + local documents + CTDISR controls + fine-tuned Llama + FastAPI + saved audits + React frontend + Docker. Remaining work is integration, correctness, security enforcement, UI polish, reporting/export, deployment, and testing — not building the core system from scratch.
