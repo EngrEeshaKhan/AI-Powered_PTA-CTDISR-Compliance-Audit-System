@@ -71,3 +71,4 @@ The system is designed to run **entirely offline** — no evidence, control data
 - Provide a centralized, offline knowledge base of policies, advisories, CTDISR controls, and asset inventories, organized by category.
 - Use semantic search (sentence embeddings + FAISS) to automatically retrieve the most relevant evidence for a given control, rather than relying on keyword search.
 - Use a fine-tuned local LLM (Llama 3.2 + LoRA) to draft PTA responses, recommendations, and action items grounded in retrieved evidence.
+- Give auditors a structured workspace to review, edit, and finalize AI-drafted audit findings, with an explicit audit lifecycle (Draft → Generated → Reviewed → Finalized).
