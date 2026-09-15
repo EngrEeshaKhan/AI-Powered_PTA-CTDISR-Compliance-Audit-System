@@ -75,3 +75,198 @@ The system is designed to run **entirely offline** — no evidence, control data
 - Enforce role-based access so that CTDISR framework management is restricted to Administrators while day-to-day auditing is available to Auditors.
 - Package the entire system (backend, frontend, model weights, storage) for local/offline deployment via Docker, so it can run inside an internal network without external dependencies.
 - Maintain a clean audit trail: every finding is traceable to the control it addresses, the evidence used, the AI output, and the auditor's edits.
+
+## 4. System Architecture
+
+```
+                       ┌───────────────────────────────────────────┐
+                       │              Document Ingestion            │
+                       │  PDF / DOCX / Excel  →  Parse  →  Chunk    │
+                       └───────────────────────┬───────────────────┘
+                                                ▼
+                       ┌───────────────────────────────────────────┐
+                       │        Embedding (all-MiniLM-L6-v2)        │
+                       │              384-dim vectors                │
+                       └───────────────────────┬───────────────────┘
+                                                ▼
+                       ┌───────────────────────────────────────────┐
+                       │              FAISS Vector Index             │
+                       │   storage/vectors/knowledge.index + meta    │
+                       └───────────────────────┬───────────────────┘
+                                                ▼
+   Auditor selects  ──▶  Retrieve top-k evidence  ──▶  Context Builder ──▶  Fine-tuned Llama (LoRA)
+   a CTDISR control       (CTDISR + Policies +                                       │
+                            Advisories + Assets)                                     ▼
+                                                                     PTA Response / Recommendations / Action By
+                                                                                       │
+                                                                                       ▼
+                                                                         NTC Auditor Review & Comments
+                                                                                       │
+                                                                                       ▼
+                                                                            Final Audit Report
+```
+
+**Layered view:**
+
+| Layer | Responsibility |
+|---|---|
+| **Ingestion layer** | Parses PDF/DOCX/Excel, chunks text, extracts metadata, stores raw documents by category |
+| **Retrieval layer** | Embeds chunks, indexes them in FAISS, performs semantic top-k search per control |
+| **Reasoning layer** | Builds a grounded prompt from retrieved evidence, runs it through the fine-tuned Llama model |
+| **Persistence layer** | Stores controls, audits, and reports as JSON documents on local disk |
+| **Application layer** | FastAPI REST API exposing uploads, CTDISR controls, audits, reports, and dashboard aggregation |
+| **Presentation layer** | React + MUI frontend with role-based navigation and an audit workspace |
+| **Deployment layer** | Docker Compose orchestration for backend + frontend, with local storage/model mounts |
+
+---
+
+## 5. Phase 1 — Project Foundation
+
+**Goal:** establish the problem, scope, and technical direction before writing implementation code.
+
+- Defined the project objective, problem statement, and system goals (see Sections 1–3).
+- Established the high-level architecture: RAG pipeline + fine-tuned LLM + FastAPI backend + React frontend + Docker packaging.
+- Selected the technology stack (Section 13) based on constraints: must run offline, must run on modest local hardware (CPU inference fallback), must be deployable via Docker.
+- Decided on local JSON storage rather than a full RDBMS for the MVP, keeping PostgreSQL as a documented-but-not-yet-adopted future option.
+
+📷 *Screenshot: overall architecture / project overview diagram*
+
+## 6. Phase 2 — Knowledge Base & Document Processing
+
+**Goal:** get organizational evidence into a structured, searchable form.
+
+- Four document categories are supported: **Policies, Advisories, CTDISR, Assets** — each stored in its own subfolder under `storage/documents/`.
+- Ingestion supports **PDF, DOCX, and Excel** files. Documents already processed in development include:
+  - `NTC-DC_Asset_Inventory.xlsx`
+  - `national_cs_framework_for_telecom_07-07-2022.pdf`
+  - `ISMS_Data_Protection_Policy_v1.1-compressed.pdf`
+- The ingestion pipeline: **upload → parse → chunk → store with metadata**. Metadata includes source filename, category, chunk index, and (internally) file path — though the file path must never be rendered raw in the UI.
+- The index currently holds roughly **805 metadata/chunk records**, tracked in `storage/vectors/knowledge_metadata.json`.
+- **Upload success is not the same as processing success.** The system distinguishes four document states:
+  - `Uploaded` — file received and saved to disk
+  - `Processing` — parsing/chunking/embedding in progress
+  - `Processed` — successfully chunked, embedded, and indexed
+  - `Processing Failed` — an error occurred during parsing/embedding (the file is retained but not searchable)
+- The frontend Documents screen is expected to show this status explicitly rather than a generic "success" message, plus support search/filter, per-document detail view, and delete.
+- Raw filesystem paths (e.g. Windows paths like `D:\Internships and Researches\...`) must never be surfaced in the UI — only display names, categories, and status.
+
+📷 *Screenshots: Documents page · Upload screen · Processing status screen*
+
+## 7. Phase 3 — Vector Database & RAG
+
+**Goal:** make the knowledge base semantically searchable so the right evidence surfaces for each control.
+
+- Embedding model: **`all-MiniLM-L6-v2`**, producing 384-dimensional vectors — chosen for being lightweight enough to run locally/offline without a GPU.
+- Vector index: **FAISS**, persisted at `storage/vectors/knowledge.index`, with a parallel metadata file (`knowledge_metadata.json`) mapping vector IDs back to source document/chunk info.
+- An embedding cache (`storage/cache/embeddings/`) avoids re-embedding unchanged documents on restart.
+- **Retrieval flow:** given a CTDISR control (its ID + description + interpretation), the system embeds the control text and performs a top-k nearest-neighbor search across all indexed chunks, optionally filtered by category (Policies, Advisories, Assets).
+- **Context Builder:** assembles the retrieved chunks into a structured, de-duplicated context block, tagged by source category, which becomes part of the prompt sent to the LLM.
+
+📷 *Screenshots: Knowledge-base statistics · Evidence retrieval panel · Architecture diagram*
+
+## 8. Phase 4 — CTDISR Framework & Controls
+
+**Goal:** represent the regulatory framework itself as structured, manageable data — separate from ordinary evidence documents.
+
+- Controls are stored separately from other documents, at `storage/ctdisr/controls.json`, since they are framework definitions rather than evidence.
+- Each control record includes:
+  - **Control ID** (e.g. `3.1`)
+  - **Control Level** (e.g. `CL1`)
+  - **Control Description**
+  - **Control Interpretation**
+  - **Active/Inactive** status flag
+- Development/testing has exercised control **3.1 / CL1** and control **4.4** specifically.
+- CTDISR management endpoints (create/update/deactivate controls) are **Administrator-only**. Deleting a control is implemented as **deactivation** (`active: false`), not physical removal — this preserves audit history for any audits already run against that control.
+- Auditors can view the full active control list and control detail, but cannot create, edit, or deactivate controls.
+
+📷 *Screenshots: CTDISR Controls list · Control detail view · Admin CTDISR management screen*
+
+## 9. Phase 5 — AI-Powered Audit Generation *(core of the project)*
+
+**Goal:** generate a grounded, structured audit finding for a selected control, using retrieved evidence and a fine-tuned LLM.
+
+```
+Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Generate Audit Finding
+```
+
+**Model details:**
+
+- Base model: **`meta-llama/Llama-3.2-3B-Instruct`**.
+- Fine-tuning method: **LoRA/QLoRA**, run on an **A100 GPU via Google Colab** (training is not expected to happen on local hardware).
+- Training dataset: **~99 examples** derived from an existing CTDISR audit Excel workbook (real control → PTA response/recommendation pairs).
+- Adapter size: **~24.3M trainable parameters**, roughly **0.75%** of the base model's total parameters — a lightweight adapter rather than a full fine-tune.
+- **Local inference fallback:** since the 3B model is heavier than ideal for CPU-only local inference, a smaller local setup is used day-to-day:
+  ```
+  models/
+  ├── llama-3.2-1b-instruct/
+  └── pta-llama-3.2-1b-lora/
+      └── final/
+  ```
+- **Performance:** local CPU inference takes roughly **tens of seconds per generated response**, which is expected given the hardware constraints of the offline deployment target.
+- ⚠️ **Known cleanup item:** there is a configuration/path inconsistency between older references to the 3B model and the actual local 1B fallback setup — this should be resolved so model paths are consistent across config files.
+
+**Generation flow:**
+
+1. Auditor selects a CTDISR control in the Audit Workspace.
+2. Backend retrieves top-k relevant evidence chunks (from CTDISR text, Policies, Advisories, Assets).
+3. Context Builder assembles the evidence into a structured prompt.
+4. The fine-tuned Llama model generates the finding, controlled by two exposed parameters:
+   - `top_k` — number of evidence chunks retrieved
+   - `max_new_tokens` — generation length cap
+5. Output fields: **PTA Response, PTA Recommendations, Action By** — persisted immediately in `Draft`/`Generated` status.
+
+📷 *Screenshots: Audit Workspace · Selected control · Retrieved evidence · AI-generated result*
+
+## 10. Phase 6 — Auditor Review & Reporting
+
+**Goal:** turn an AI draft into an authoritative, human-approved audit record.
+
+**Audit lifecycle:**
+
+```
+Draft → AI Generated → Auditor Review → Reviewed → Finalized
+```
+
+| Status | Meaning |
+|---|---|
+| `Draft` | Control selected, audit initiated, no AI output yet |
+| `Generated` | AI has produced PTA Response / Recommendations / Action By |
+| `Reviewed` | Auditor has read and edited the AI output |
+| `Finalized` | Auditor has signed off; the record is locked as the official finding |
+
+- Auditors can edit **PTA Response, PTA Recommendations, Action By**, and add free-text **NTC Comments** — the auditor's own observations layered on top of the AI draft.
+- Saved audits are persisted at `storage/audits/audit_results.json`, keyed by a unique audit ID.
+- The **Reports API** (`/api/v1/reports`) exposes the saved audit list and individual audit detail to the frontend, backed by a `JsonAuditService()`.
+- **Excel/PDF export** of finalized reports is planned but not yet implemented.
+- The frontend's Audit History / Reports screens should render these persisted records (not raw API JSON) as a proper table: Audit ID, Control, Level, Status, Created, Updated, Actions — with a detail view showing the full finding (Control, Description, Interpretation, Evidence, PTA Response, Recommendations, Action By, NTC Comments, Status).
+
+📷 *Screenshots: Auditor review screen · Audit History · Audit Report detail*
+
+## 11. Phase 7 — Frontend, Security & Deployment
+
+**Goal:** wrap the backend in a professional, role-aware interface and make the whole system deployable as a unit.
+
+- Frontend stack: **React + Vite + MUI + React Router**, with custom layout/header/status components and an authentication context.
+- Visual direction: **dark charcoal/black base with emerald/green and amber/red accents** — explicitly avoiding blue, to read as a serious compliance/security platform rather than a generic dashboard template.
+- **Navigation structure:**
+  ```
+  Dashboard
+  Knowledge Base
+   ├── Documents
+   └── CTDISR Controls
+  Audits
+   ├── Audit Workspace
+   ├── Audit History
+   └── Reports
+  Administration
+   └── Settings
+  + User/Profile menu
+  ```
+- **Dashboard** aggregates: total documents, per-category counts (Policies/Advisories/CTDISR/Assets), CTDISR control count, audit counts/activity, AI engine status, and knowledge-base status — all served by a single `/api/v1/dashboard` endpoint so the frontend doesn't need to compute aggregates client-side.
+- **Role-based UI** enforced for **NTC Administrator** vs **Auditor** (Section 21) — the CTDISR management screen in particular must not be reachable/visible to Auditors.
+- **Dockerized** backend and frontend, orchestrated via a single `docker-compose.yml` at the project root (Section 19).
+- **Git/GitHub workflow and CI/CD** concepts layered on top of local development (Section 20).
+
+📷 *Screenshots: Dashboard · Admin interface · Auditor interface · Docker architecture diagram*
+
+---
