@@ -321,3 +321,9 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 | Routing | React Router |
 | Auth | Custom authentication context |
 | Theming | Dark charcoal/black + emerald/green + amber/red |
+
+
+**Tooling**
+- Git / GitHub for version control
+- GitHub Actions (planned/being set up) for CI/CD
+- Docker Compose for local/offline orchestration
