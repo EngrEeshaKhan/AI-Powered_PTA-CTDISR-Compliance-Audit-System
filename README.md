@@ -270,3 +270,30 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 📷 *Screenshots: Dashboard · Admin interface · Auditor interface · Docker architecture diagram*
 
 ---
+
+## 12. Screenshots
+
+### Dashboard
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Knowledge Base
+![Knowledge Base](docs/screenshots/knowledge-base.png)
+
+### CTDISR Controls
+![CTDISR Controls](docs/screenshots/ctdisr-controls.png)
+
+### Audit Workspace
+![Audit Workspace](docs/screenshots/audit-workspace.png)
+
+### AI Audit Result
+![AI Audit Result](docs/screenshots/audit-result.png)
+
+### Audit History
+![Audit History](docs/screenshots/audit-history.png)
+
+### Reports
+![Audit Reports](docs/screenshots/audit-reports.png)
+
+> Store all documentation images under `docs/screenshots/` — not in `storage/` or `frontend/public/` — to keep documentation assets separate from application data. Recommended filenames are shown above; keep them in sync with the `alt`/path in each `![...]()` tag if you rename anything.
+
+---
