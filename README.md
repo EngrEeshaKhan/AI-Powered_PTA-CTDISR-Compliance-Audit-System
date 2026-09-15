@@ -684,3 +684,4 @@ The system supports exactly two roles.
 
 ## 25. Future Improvements
 - Complete Excel/PDF export for finalized audit reports.
+- Finish aligning frontend reports/history wiring to the `/reports` API contract.
