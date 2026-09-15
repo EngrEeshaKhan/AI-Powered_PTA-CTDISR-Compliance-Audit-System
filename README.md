@@ -310,3 +310,14 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 | LLM | Llama 3.2 (3B fine-tuned / 1B local fallback) | LoRA/QLoRA adapter |
 | Document parsing | PDF / DOCX / Excel parsers | Category-tagged ingestion |
 | Containerization | Docker | Backend + frontend services |
+
+
+**Frontend**
+| Component | Choice |
+|---|---|
+| Framework | React |
+| Build tool | Vite |
+| UI library | MUI (Material UI) |
+| Routing | React Router |
+| Auth | Custom authentication context |
+| Theming | Dark charcoal/black + emerald/green + amber/red |
