@@ -604,3 +604,24 @@ Push/deploy image
 ```
 
 Local commands (`docker build`, `docker compose build`, `docker compose up`) are separate from and unaffected by whatever GitHub Actions workflow is configured — CI/CD automates what you'd otherwise run manually, it doesn't replace local development.
+
+
+## 21. User Roles & Permissions
+
+The system supports exactly two roles.
+
+| Capability | NTC Administrator | Auditor |
+|---|---|---|
+| Upload/manage documents | ✅ | View only |
+| Manage document versions | ✅ | ❌ |
+| View knowledge-base statistics | ✅ | ✅ |
+| View CTDISR controls | ✅ | ✅ |
+| Create/update/deactivate CTDISR controls | ✅ | ❌ |
+| Start/run AI audits | ✅ | ✅ |
+| Review/edit PTA Response, Recommendations, Action By | ✅ | ✅ |
+| Add/edit NTC Comments | ✅ | ✅ |
+| Finalize audit reports | ✅ | ✅ |
+| Export reports | ✅ | — |
+| Access Administration/Settings screens | ✅ | ❌ |
+
+**Hard security requirement:** CTDISR framework upload/change functionality is Administrator-only, both at the API level (server-side enforcement) and the UI level (Auditors must not even see the admin screen, not just be blocked from submitting it).
