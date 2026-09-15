@@ -625,3 +625,12 @@ The system supports exactly two roles.
 | Access Administration/Settings screens | ✅ | ❌ |
 
 **Hard security requirement:** CTDISR framework upload/change functionality is Administrator-only, both at the API level (server-side enforcement) and the UI level (Auditors must not even see the admin screen, not just be blocked from submitting it).
+
+
+## 22. Security Considerations
+
+- CTDISR framework management is strictly Administrator-only — enforced server-side, not just hidden in the UI.
+- Raw filesystem paths (e.g. `D:\Internships and Researches\...`) must never be exposed to end users; only clean display names, categories, and processing status should render in the UI.
+- The system is designed to run fully offline/local — no evidence documents, control text, or generated findings are sent to third-party AI APIs.
+- Authentication context on the frontend gates route access by role; this should be paired with server-side role checks on every protected endpoint (not just relied upon client-side).
+- Deactivating a control (rather than hard-deleting) preserves the audit trail for any historical audits run against it.
