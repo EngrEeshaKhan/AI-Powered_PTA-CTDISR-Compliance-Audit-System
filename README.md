@@ -686,3 +686,4 @@ The system supports exactly two roles.
 - Complete Excel/PDF export for finalized audit reports.
 - Finish aligning frontend reports/history wiring to the `/reports` API contract.
 - Full role-based UI enforcement (hide admin-only routes/components from Auditors both visually and via route guards).
+- Resolve the local Windows PyTorch DLL/import issue blocking `uvicorn app.main:app --reload` in some environments.
