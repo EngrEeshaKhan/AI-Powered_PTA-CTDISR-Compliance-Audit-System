@@ -163,6 +163,8 @@ The system is designed to run **entirely offline** — no evidence, control data
 - **Context Builder:** assembles the retrieved chunks into a structured, de-duplicated context block, tagged by source category, which becomes part of the prompt sent to the LLM.
 
 <img width="734" height="434" alt="image" src="https://github.com/user-attachments/assets/55ab6b3e-6bf1-4052-addc-d5ba11e12487" />
+![Uploading image.png…]()
+
 
 ## 8. Phase 4 — CTDISR Framework & Controls
 
