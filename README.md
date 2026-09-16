@@ -183,7 +183,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 - CTDISR management endpoints (create/update/deactivate controls) are **Administrator-only**. Deleting a control is implemented as **deactivation** (`active: false`), not physical removal — this preserves audit history for any audits already run against that control.
 - Auditors can view the full active control list and control detail, but cannot create, edit, or deactivate controls.
 
-📷 *Screenshots: CTDISR Controls list · Control detail view · Admin CTDISR management screen*
+<img width="941" height="389" alt="image" src="https://github.com/user-attachments/assets/19e778ef-db3e-45dc-8385-940a1ebde4e9" />
 
 ## 9. Phase 5 — AI-Powered Audit Generation *(core of the project)*
 
