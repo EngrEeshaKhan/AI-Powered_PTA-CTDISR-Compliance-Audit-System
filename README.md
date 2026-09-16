@@ -187,6 +187,9 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 <img width="229" height="93" alt="image" src="https://github.com/user-attachments/assets/633eaf94-5b75-4178-97d3-d6bd43744f50" />
 
+<img width="445" height="399" alt="image" src="https://github.com/user-attachments/assets/ad1bb596-d943-4dc9-af92-3ad5e0426b53" />
+
+
 
 ## 9. Phase 5 — AI-Powered Audit Generation *(core of the project)*
 
