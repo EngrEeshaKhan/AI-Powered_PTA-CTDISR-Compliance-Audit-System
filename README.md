@@ -129,7 +129,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 - Selected the technology stack (Section 13) based on constraints: must run offline, must run on modest local hardware (CPU inference fallback), must be deployable via Docker.
 - Decided on local JSON storage rather than a full RDBMS for the MVP, keeping PostgreSQL as a documented-but-not-yet-adopted future option.
 
-📷 *Screenshot: overall architecture / project overview diagram*
+
 
 ## 6. Phase 2 — Knowledge Base & Document Processing
 
