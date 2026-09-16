@@ -185,6 +185,9 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 <img width="941" height="389" alt="image" src="https://github.com/user-attachments/assets/19e778ef-db3e-45dc-8385-940a1ebde4e9" />
 
+<img width="229" height="93" alt="image" src="https://github.com/user-attachments/assets/633eaf94-5b75-4178-97d3-d6bd43744f50" />
+
+
 ## 9. Phase 5 — AI-Powered Audit Generation *(core of the project)*
 
 **Goal:** generate a grounded, structured audit finding for a selected control, using retrieved evidence and a fine-tuned LLM.
