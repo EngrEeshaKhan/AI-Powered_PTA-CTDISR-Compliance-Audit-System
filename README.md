@@ -224,6 +224,8 @@ Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Gene
 5. Output fields: **PTA Response, PTA Recommendations, Action By** — persisted immediately in `Draft`/`Generated` status.
 
 <img width="921" height="392" alt="image" src="https://github.com/user-attachments/assets/ff7b56fc-b467-4882-b614-6f3ec747ed8a" />
+<img width="824" height="130" alt="image" src="https://github.com/user-attachments/assets/7134801a-919c-40e0-a389-de83a6e91908" />
+
 
 ## 10. Phase 6 — Auditor Review & Reporting
 
