@@ -223,7 +223,7 @@ Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Gene
    - `max_new_tokens` — generation length cap
 5. Output fields: **PTA Response, PTA Recommendations, Action By** — persisted immediately in `Draft`/`Generated` status.
 
-📷 *Screenshots: Audit Workspace · Selected control · Retrieved evidence · AI-generated result*
+<img width="921" height="392" alt="image" src="https://github.com/user-attachments/assets/ff7b56fc-b467-4882-b614-6f3ec747ed8a" />
 
 ## 10. Phase 6 — Auditor Review & Reporting
 
