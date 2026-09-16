@@ -284,7 +284,7 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 ---
 
 
-## 13. Technology Stack
+## 12. Technology Stack
 
 **Backend**
 | Component | Choice | Notes |
@@ -315,7 +315,7 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 - Docker Compose for local/offline orchestration
 
 
-## 14. Project Structure
+## 13. Project Structure
 
 ```
 project-root/
@@ -363,7 +363,7 @@ project-root/
 ```
 
 
-## 15. Data Model / Storage Schemas
+## 14. Data Model / Storage Schemas
 
 **Control record** (`storage/ctdisr/controls.json`)
 ```json
@@ -406,7 +406,7 @@ project-root/
 }
 ```
 
-## 16. API Documentation
+## 15. API Documentation
 
 **Uploads**
 ```
@@ -473,7 +473,7 @@ GET /api/v1/dashboard   # aggregated stats: document counts by category, control
 
 Interactive API documentation is available via FastAPI's built-in Swagger UI at `/docs` once the backend is running (e.g. `http://localhost:8000/docs`).
 
-## 17. Installation
+## 16. Installation
 
 **Prerequisites**
 - Python 3.10.x
@@ -509,7 +509,7 @@ models/pta-llama-3.2-1b-lora/final/
 ```
 If these are not present, download/copy them from your training environment (Colab output) before first run.
 
-## 18. Configuration & Environment Variables
+## 17. Configuration & Environment Variables
 
 Recommended `.env` structure for the backend (adjust to match actual config loading in `app/`):
 
@@ -538,7 +538,7 @@ For the frontend, a `.env` file controlling the API base URL:
 VITE_API_BASE_URL=http://localhost:8000/api/v1
 ```
 
-## 19. Docker Deployment
+## 18. Docker Deployment
 
 ```bash
 docker compose build
@@ -566,7 +566,7 @@ docker compose up
         - backend
   ```
 
-## 20. Git, GitHub & CI/CD Workflow
+## 19. Git, GitHub & CI/CD Workflow
 
 Repository: [`EngrEeshaKhan/AI-Powered_PTA-CTDISR-Compliance-Audit-System`](https://github.com/EngrEeshaKhan/AI-Powered_PTA-CTDISR-Compliance-Audit-System)
 
@@ -592,7 +592,7 @@ Push/deploy image
 Local commands (`docker build`, `docker compose build`, `docker compose up`) are separate from and unaffected by whatever GitHub Actions workflow is configured — CI/CD automates what you'd otherwise run manually, it doesn't replace local development.
 
 
-## 21. User Roles & Permissions
+## 20. User Roles & Permissions
 
 The system supports exactly two roles.
 
@@ -613,7 +613,7 @@ The system supports exactly two roles.
 **Hard security requirement:** CTDISR framework upload/change functionality is Administrator-only, both at the API level (server-side enforcement) and the UI level (Auditors must not even see the admin screen, not just be blocked from submitting it).
 
 
-## 22. Security Considerations
+## 21. Security Considerations
 
 - CTDISR framework management is strictly Administrator-only — enforced server-side, not just hidden in the UI.
 - Raw filesystem paths (e.g. `D:\Internships and Researches\...`) must never be exposed to end users; only clean display names, categories, and processing status should render in the UI.
@@ -622,7 +622,7 @@ The system supports exactly two roles.
 - Deactivating a control (rather than hard-deleting) preserves the audit trail for any historical audits run against it.
 
 
-## 23. Known Issues & Troubleshooting
+## 22. Known Issues & Troubleshooting
 
 **PyTorch DLL / import error on Windows when running `uvicorn app.main:app --reload`**
 - This is an **environment/dependency issue**, not an architectural problem with the audit pipeline. It typically stems from a mismatched PyTorch build (CPU vs CUDA wheel) or a missing Visual C++ Redistributable on Windows.
@@ -640,7 +640,7 @@ The system supports exactly two roles.
 **Model path errors at inference time**
 - Check for stale references to the original 3B model path where the active local setup actually uses the 1B fallback (`models/llama-3.2-1b-instruct` + `models/pta-llama-3.2-1b-lora/final`).
 
-## 24. Current Status
+## 23. Current Status
 
 | Area | State |
 |---|---|
@@ -668,7 +668,7 @@ The system supports exactly two roles.
 
 **Bottom line:** the major technical pieces are already in place — RAG + FAISS + local documents + CTDISR controls + fine-tuned Llama + FastAPI + saved audits + React frontend + Docker. Remaining work is integration, correctness, security enforcement, UI polish, reporting/export, deployment, and testing — not building the core system from scratch.
 
-## 25. Future Improvements
+## 24. Future Improvements
 - Complete Excel/PDF export for finalized audit reports.
 - Finish aligning frontend reports/history wiring to the `/reports` API contract.
 - Full role-based UI enforcement (hide admin-only routes/components from Auditors both visually and via route guards).
@@ -679,7 +679,7 @@ The system supports exactly two roles.
 - Add automated tests (backend unit/integration tests, frontend component tests) to support the CI pipeline.
 - Add audit logging (who ran/edited/finalized which audit, and when) for compliance traceability of the tool itself.
 
-## 26. Author
+## 25. Author
 
 **Eesha Khan**
 Repository: [`EngrEeshaKhan/AI-Powered_PTA-CTDISR-Compliance-Audit-System`](https://github.com/EngrEeshaKhan/AI-Powered_PTA-CTDISR-Compliance-Audit-System)
