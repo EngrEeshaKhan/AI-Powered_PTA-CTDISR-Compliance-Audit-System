@@ -130,7 +130,6 @@ The system is designed to run **entirely offline** — no evidence, control data
 - Decided on local JSON storage rather than a full RDBMS for the MVP, keeping PostgreSQL as a documented-but-not-yet-adopted future option.
 
 
-
 ## 6. Phase 2 — Knowledge Base & Document Processing
 
 **Goal:** get organizational evidence into a structured, searchable form.
@@ -150,7 +149,8 @@ The system is designed to run **entirely offline** — no evidence, control data
 - The frontend Documents screen is expected to show this status explicitly rather than a generic "success" message, plus support search/filter, per-document detail view, and delete.
 - Raw filesystem paths (e.g. Windows paths like `D:\Internships and Researches\...`) must never be surfaced in the UI — only display names, categories, and status.
 
-📷 *Screenshots: Documents page · Upload screen · Processing status screen*
+<img width="938" height="417" alt="image" src="https://github.com/user-attachments/assets/48383516-10b7-4672-bc95-b6e037d8ac4b" />
+
 
 ## 7. Phase 3 — Vector Database & RAG
 
