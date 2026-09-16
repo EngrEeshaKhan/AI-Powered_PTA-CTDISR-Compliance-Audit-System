@@ -225,6 +225,7 @@ Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Gene
 
 <img width="921" height="392" alt="image" src="https://github.com/user-attachments/assets/ff7b56fc-b467-4882-b614-6f3ec747ed8a" />
 <img width="824" height="130" alt="image" src="https://github.com/user-attachments/assets/7134801a-919c-40e0-a389-de83a6e91908" />
+<img width="801" height="188" alt="image" src="https://github.com/user-attachments/assets/cbff5a19-81f2-45b3-a98b-0af7f7859455" />
 
 
 ## 10. Phase 6 — Auditor Review & Reporting
