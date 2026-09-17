@@ -258,7 +258,7 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 
 **Goal:** wrap the backend in a professional, role-aware interface and make the whole system deployable as a unit.
 
-- Frontend stack: **React + Vite + MUI + React Router**, with custom layout/header/status components and an authentication context.
+- Frontend stack: **React + Vite**, with custom layout/header/status components and an authentication context.
 - Visual direction: **dark charcoal/black base with emerald/green and amber/red accents** — explicitly avoiding blue, to read as a serious compliance/security platform rather than a generic dashboard template.
 - **Navigation structure:**
   ```
