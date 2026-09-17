@@ -666,7 +666,6 @@ The system supports exactly two roles.
 **Bottom line:** the major technical pieces are already in place — RAG + FAISS + local documents + CTDISR controls + fine-tuned Llama + FastAPI + saved audits + React frontend + Docker. Remaining work is integration, correctness, security enforcement, UI polish, reporting/export, deployment, and testing — not building the core system from scratch.
 
 ## 24. Future Improvements
-- Complete Excel/PDF export for finalized audit reports.
 - Finish aligning frontend reports/history wiring to the `/reports` API contract.
 - Full role-based UI enforcement (hide admin-only routes/components from Auditors both visually and via route guards).
 - Resolve the local Windows PyTorch DLL/import issue blocking `uvicorn app.main:app --reload` in some environments.
