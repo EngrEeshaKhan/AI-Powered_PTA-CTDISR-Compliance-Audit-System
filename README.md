@@ -303,8 +303,6 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 |---|---|
 | Framework | React |
 | Build tool | Vite |
-| UI library | MUI (Material UI) |
-| Routing | React Router |
 | Auth | Custom authentication context |
 | Theming | Dark charcoal/black + emerald/green + amber/red |
 
