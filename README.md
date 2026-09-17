@@ -2,7 +2,7 @@
 
 # AI-Powered PTA-CTDISR Compliance Audit System
 
-**A local/offline AI-assisted compliance auditing platform for NTC auditors — RAG-powered evidence retrieval + a fine-tuned local LLM to draft CTDISR audit findings for human review.**
+**A offline AI-assisted compliance auditing platform for NTC auditors — RAG-powered evidence retrieval + a fine-tuned local LLM to draft CTDISR audit findings for human review.**
 
 ![Status](https://img.shields.io/badge/status-active--development-yellow)
 ![Backend](https://img.shields.io/badge/backend-FastAPI-009688)
