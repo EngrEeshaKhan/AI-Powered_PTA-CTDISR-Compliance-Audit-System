@@ -202,7 +202,7 @@ Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Gene
 - Base model: **`meta-llama/Llama-3.2-3B-Instruct`**.
 - Fine-tuning method: **LoRA/QLoRA**, run on an **A100 GPU via Google Colab** (training is not expected to happen on local hardware).
 - Training dataset: **~99 examples** derived from an existing CTDISR audit Excel workbook (real control → PTA response/recommendation pairs).
-- Adapter size: **~24.3M trainable parameters**, roughly **0.75%** of the base model's total parameters — a lightweight adapter rather than a full fine-tune.
+- Adapter size: **~24.3M trainable parameters**, roughly **0.75%** of the base model's total parameters — a lightweight adapter rather than a full fine-tune
 - **Local inference fallback:** since the 3B model is heavier than ideal for CPU-only local inference, a smaller local setup is used day-to-day:
   ```
   models/
