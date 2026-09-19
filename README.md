@@ -181,7 +181,7 @@ The system is designed to run **entirely offline** — no evidence, control data
   - **Active/Inactive** status flag
 - Development/testing has exercised control **3.1 / CL1** and control **4.4** specifically.
 - CTDISR management endpoints (create/update/deactivate controls) are **Administrator-only**. Deleting a control is implemented as **deactivation** (`active: false`), not physical removal — this preserves audit history for any audits already run against that control.
-- Auditors can view the full active control list and control detail, but cannot create, edit, or deactivate controls.
+- Auditors can view the full active control list and control detail, but cannot create, edit, or deactivate controls
 
 <img width="941" height="389" alt="image" src="https://github.com/user-attachments/assets/19e778ef-db3e-45dc-8385-940a1ebde4e9" />
 <img width="445" height="399" alt="image" src="https://github.com/user-attachments/assets/ad1bb596-d943-4dc9-af92-3ad5e0426b53" />
