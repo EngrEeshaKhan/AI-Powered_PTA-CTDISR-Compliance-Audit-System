@@ -159,7 +159,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 - Embedding model: **`all-MiniLM-L6-v2`**, producing 384-dimensional vectors — chosen for being lightweight enough to run locally/offline without a GPU.
 - Vector index: **FAISS**, persisted at `storage/vectors/knowledge.index`, with a parallel metadata file (`knowledge_metadata.json`) mapping vector IDs back to source document/chunk info.
 - An embedding cache (`storage/cache/embeddings/`) avoids re-embedding unchanged documents on restart.
-- **Retrieval flow:** given a CTDISR control (its ID + description + interpretation), the system embeds the control text and performs a top-k nearest-neighbor search across all indexed chunks, optionally filtered by category (Policies, Advisories, Assets).
+- **Retrieval flow:** given a CTDISR control (its ID + description + interpretation), the system embeds the control text and performs a top-k nearest-neighbor search across all indexed chunks, optionally filtered by category (Policies, Advisories, Assets)
 - **Context Builder:** assembles the retrieved chunks into a structured, de-duplicated context block, tagged by source category, which becomes part of the prompt sent to the LLM.
 
 <img width="734" height="434" alt="image" src="https://github.com/user-attachments/assets/55ab6b3e-6bf1-4052-addc-d5ba11e12487" />
