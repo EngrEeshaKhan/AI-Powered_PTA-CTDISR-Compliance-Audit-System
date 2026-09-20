@@ -63,7 +63,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 ## 2. Problem Statement
 
 - CTDISR compliance audits require cross-referencing dozens of policy/advisory documents against each control, often manually, using search-in-PDF or spreadsheet lookups
-- Locating the right evidence for a given control is time-consuming, inconsistent between auditors, and easy to get wrong (missed documents, outdated policy versions, etc.).
+- Locating the right evidence for a given control is time-consuming, inconsistent between auditors, and easy to get wrong (missed documents, outdated policy versions, etc.)
 - There is no single offline-capable tool that unifies document knowledge management, CTDISR control tracking, AI-assisted draft generation, and auditor sign-off in one auditable workflow.
 - Existing generic AI tools (ChatGPT, etc.) cannot be used directly for this because the source documents are sensitive/internal and cannot be uploaded to third-party services.
 
