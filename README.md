@@ -72,7 +72,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 - Use semantic search (sentence embeddings + FAISS) to automatically retrieve the most relevant evidence for a given control, rather than relying on keyword search
 - Use a fine-tuned local LLM (Llama 3.2 + LoRA) to draft PTA responses, recommendations, and action items grounded in retrieved evidence
 - Give auditors a structured workspace to review, edit, and finalize AI-drafted audit findings, with an explicit audit lifecycle (Draft → Generated → Reviewed → Finalized).
-- Enforce role-based access so that CTDISR framework management is restricted to Administrators while day-to-day auditing is available to Auditors.
+- Enforce role-based access so that CTDISR framework management is restricted to Administrators while day-to-day auditing is available to Auditors
 - Package the entire system (backend, frontend, model weights, storage) for local/offline deployment via Docker, so it can run inside an internal network without external dependencies.
 - Maintain a clean audit trail: every finding is traceable to the control it addresses, the evidence used, the AI output, and the auditor's edits.
 
