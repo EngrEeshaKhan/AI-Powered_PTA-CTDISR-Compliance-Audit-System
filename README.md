@@ -191,7 +191,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 ## 9. Phase 5 — AI-Powered Audit Generation *(core of the project)*
 
-**Goal:** generate a grounded, structured audit finding for a selected control, using retrieved evidence and a fine-tuned LLM.
+**Goal:** generate a grounded, structured audit finding for a selected control, using retrieved evidence and a fine-tuned LLM
 
 ```
 Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Generate Audit Finding
