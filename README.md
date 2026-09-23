@@ -215,7 +215,7 @@ Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Gene
 
 **Generation flow:**
 
-1. Auditor selects a CTDISR control in the Audit Workspace.
+1. Auditor selects a CTDISR control in the Audit Workspace
 2. Backend retrieves top-k relevant evidence chunks (from CTDISR text, Policies, Advisories, Assets).
 3. Context Builder assembles the evidence into a structured prompt.
 4. The fine-tuned Llama model generates the finding, controlled by two exposed parameters:
