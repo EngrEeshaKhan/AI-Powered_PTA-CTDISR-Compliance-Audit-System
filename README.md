@@ -125,7 +125,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 **Goal:** establish the problem, scope, and technical direction before writing implementation code.
 
 - Defined the project objective, problem statement, and system goals (see Sections 1–3).
-- Established the high-level architecture: RAG pipeline + fine-tuned LLM + FastAPI backend + React frontend + Docker packaging.
+- Established the high-level architecture: RAG pipeline + fine-tuned LLM + FastAPI backend + React frontend + Docker packaging
 - Selected the technology stack (Section 13) based on constraints: must run offline, must run on modest local hardware (CPU inference fallback), must be deployable via Docker.
 - Decided on local JSON storage rather than a full RDBMS for the MVP, keeping PostgreSQL as a documented-but-not-yet-adopted future option.
 
