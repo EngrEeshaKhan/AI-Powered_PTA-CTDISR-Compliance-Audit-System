@@ -122,7 +122,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 ## 5. Phase 1 — Project Foundation
 
-**Goal:** establish the problem, scope, and technical direction before writing implementation code.
+**Goal:** establish the problem, scope, and technical direction before writing implementation code
 
 - Defined the project objective, problem statement, and system goals (see Sections 1–3)
 - Established the high-level architecture: RAG pipeline + fine-tuned LLM + FastAPI backend + React frontend + Docker packaging
