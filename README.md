@@ -616,7 +616,7 @@ The system supports exactly two roles.
 - CTDISR framework management is strictly Administrator-only — enforced server-side, not just hidden in the UI.
 - The system is designed to run fully offline/local — no evidence documents, control text, or generated findings are sent to third-party AI APIs.
 - Authentication context on the frontend gates route access by role; this should be paired with server-side role checks on every protected endpoint (not just relied upon client-side).
-- Deactivating a control (rather than hard-deleting) preserves the audit trail for any historical audits run against it.
+- Deactivating a control (rather than hard-deleting) preserves the audit trail for any historical audits run against it
 
 
 ## 22. Known Issues & Troubleshooting
