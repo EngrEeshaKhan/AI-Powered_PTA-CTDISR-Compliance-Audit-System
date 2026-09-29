@@ -469,7 +469,7 @@ GET /api/v1/dashboard   # aggregated stats: document counts by category, control
 
 > ⚠️ **Known integration gap:** the frontend service layer currently references an older `/audit-results` route, while the backend's actual reports contract is `/api/v1/reports`. This needs to be aligned — update the frontend API client rather than re-adding a legacy backend route.
 
-Interactive API documentation is available via FastAPI's built-in Swagger UI at `/docs` once the backend is running (e.g. `http://localhost:8000/docs`).
+Interactive API documentation is available via FastAPI's built-in Swagger UI at `/docs` once the backend is running (e.g. `http://localhost:8000/docs`)
 
 ## 16. Installation
 
