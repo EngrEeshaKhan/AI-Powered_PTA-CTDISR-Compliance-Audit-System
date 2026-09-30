@@ -211,7 +211,7 @@ Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Gene
       └── final/
   ```
 - **Performance:** local CPU inference takes roughly **tens of seconds per generated response**, which is expected given the hardware constraints of the offline deployment target.
-- ⚠️ **Known cleanup item:** there is a configuration/path inconsistency between older references to the 3B model and the actual local 1B fallback setup — this should be resolved so model paths are consistent across config files.
+- ⚠️ **Known cleanup item:** there is a configuration/path inconsistency between older references to the 3B model and the actual local 1B fallback setup — this should be resolved so model paths are consistent across config files
 
 **Generation flow:**
 
