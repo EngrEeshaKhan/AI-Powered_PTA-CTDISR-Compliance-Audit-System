@@ -134,7 +134,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 **Goal:** get organizational evidence into a structured, searchable form.
 
-- Four document categories are supported: **Policies, Advisories, CTDISR, Assets** — each stored in its own subfolder under `storage/documents/`.
+- Four document categories are supported: **Policies, Advisories, CTDISR, Assets** — each stored in its own subfolder under `storage/documents/`
 - Ingestion supports **PDF, DOCX, and Excel** files. Documents already processed in development include:
   - `NTC-DC_Asset_Inventory.xlsx`
   - `national_cs_framework_for_telecom_07-07-2022.pdf`
