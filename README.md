@@ -147,7 +147,7 @@ The system is designed to run **entirely offline** — no evidence, control data
   - `Processed` — successfully chunked, embedded, and indexed
   - `Processing Failed` — an error occurred during parsing/embedding (the file is retained but not searchable)
 - The frontend Documents screen is expected to show this status explicitly rather than a generic "success" message, plus support search/filter, per-document detail view, and delete.
-- Raw filesystem paths (e.g. Windows paths like `D:\Internships and Researches\...`) must never be surfaced in the UI — only display names, categories, and status.
+- Raw filesystem paths (e.g. Windows paths like `D:\Internships and Researches\...`) must never be surfaced in the UI — only display names, categories, and status
 
 <img width="938" height="417" alt="image" src="https://github.com/user-attachments/assets/48383516-10b7-4672-bc95-b6e037d8ac4b" />
 
