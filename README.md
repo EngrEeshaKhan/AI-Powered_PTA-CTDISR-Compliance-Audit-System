@@ -244,7 +244,7 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 | `Reviewed` | Auditor has read and edited the AI output |
 | `Finalized` | Auditor has signed off; the record is locked as the official finding |
 
-- Auditors can edit **PTA Response, PTA Recommendations, Action By**, and add free-text **NTC Comments** — the auditor's own observations layered on top of the AI draft.
+- Auditors can edit **PTA Response, PTA Recommendations, Action By**, and add free-text **NTC Comments** — the auditor's own observations layered on top of the AI draft
 - Saved audits are persisted at `storage/audits/audit_results.json`, keyed by a unique audit ID.
 - The **Reports API** (`/api/v1/reports`) exposes the saved audit list and individual audit detail to the frontend, backed by a `JsonAuditService()`.
 - **Excel/PDF export** of finalized reports is planned but not yet implemented.
