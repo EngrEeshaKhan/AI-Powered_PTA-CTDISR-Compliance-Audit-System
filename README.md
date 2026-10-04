@@ -140,7 +140,7 @@ The system is designed to run **entirely offline** — no evidence, control data
   - `national_cs_framework_for_telecom_07-07-2022.pdf`
   - `ISMS_Data_Protection_Policy_v1.1-compressed.pdf`
 - The ingestion pipeline: **upload → parse → chunk → store with metadata**. Metadata includes source filename, category, chunk index, and (internally) file path — though the file path must never be rendered raw in the UI
-- The index currently holds roughly **805 metadata/chunk records**, tracked in `storage/vectors/knowledge_metadata.json`.
+- The index currently holds roughly **805 metadata/chunk records**, tracked in `storage/vectors/knowledge_metadata.json`
 - **Upload success is not the same as processing success.** The system distinguishes four document states:
   - `Uploaded` — file received and saved to disk
   - `Processing` — parsing/chunking/embedding in progress
