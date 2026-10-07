@@ -154,7 +154,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 ## 7. Phase 3 — Vector Database & RAG
 
-**Goal:** make the knowledge base semantically searchable so the right evidence surfaces for each control.
+**Goal:** make the knowledge base semantically searchable so the right evidence surfaces for each control
 
 - Embedding model: **`all-MiniLM-L6-v2`**, producing 384-dimensional vectors — chosen for being lightweight enough to run locally/offline without a GPU.
 - Vector index: **FAISS**, persisted at `storage/vectors/knowledge.index`, with a parallel metadata file (`knowledge_metadata.json`) mapping vector IDs back to source document/chunk info
