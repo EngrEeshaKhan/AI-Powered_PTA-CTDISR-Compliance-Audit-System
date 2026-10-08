@@ -170,7 +170,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 ## 8. Phase 4 — CTDISR Framework & Controls
 
-**Goal:** represent the regulatory framework itself as structured, manageable data — separate from ordinary evidence documents.
+**Goal:** represent the regulatory framework itself as structured, manageable data — separate from ordinary evidence documents
 
 - Controls are stored separately from other documents, at `storage/ctdisr/controls.json`, since they are framework definitions rather than evidence.
 - Each control record includes:
