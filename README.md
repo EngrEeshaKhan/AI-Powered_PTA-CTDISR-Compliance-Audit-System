@@ -172,7 +172,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 **Goal:** represent the regulatory framework itself as structured, manageable data — separate from ordinary evidence documents
 
-- Controls are stored separately from other documents, at `storage/ctdisr/controls.json`, since they are framework definitions rather than evidence.
+- Controls are stored separately from other documents, at `storage/ctdisr/controls.json`, since they are framework definitions rather than evidence
 - Each control record includes:
   - **Control ID** (e.g. `3.1`)
   - **Control Level** (e.g. `CL1`)
