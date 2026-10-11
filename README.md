@@ -488,7 +488,7 @@ venv\Scripts\activate        # Windows
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
-Backend will be available at `http://localhost:8000`, with Swagger docs at `http://localhost:8000/docs`.
+Backend will be available at `http://localhost:8000`, with Swagger docs at `http://localhost:8000/docs`
 
 **Frontend setup**
 ```bash
