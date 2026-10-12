@@ -275,7 +275,7 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
   + User/Profile menu
   ```
 - **Dashboard** aggregates: total documents, per-category counts (Policies/Advisories/CTDISR/Assets), CTDISR control count, audit counts/activity, AI engine status, and knowledge-base status — all served by a single `/api/v1/dashboard` endpoint so the frontend doesn't need to compute aggregates client-side.
-- **Role-based UI** enforced for **NTC Administrator** vs **Auditor** (Section 21) — the CTDISR management screen in particular must not be reachable/visible to Auditors.
+- **Role-based UI** enforced for **NTC Administrator** vs **Auditor** (Section 21) — the CTDISR management screen in particular must not be reachable/visible to Auditors
 - **Dockerized** backend and frontend, orchestrated via a single `docker-compose.yml` at the project root (Section 19)
 - **Git/GitHub workflow and CI/CD** concepts layered on top of local development (Section 20)
 
