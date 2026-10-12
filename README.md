@@ -505,7 +505,7 @@ Ensure the local model directories exist and are populated before starting the b
 models/llama-3.2-1b-instruct/
 models/pta-llama-3.2-1b-lora/final/
 ```
-If these are not present, download/copy them from your training environment (Colab output) before first run.
+If these are not present, download/copy them from your training environment (Colab output) before first run
 
 ## 17. Configuration & Environment Variables
 
