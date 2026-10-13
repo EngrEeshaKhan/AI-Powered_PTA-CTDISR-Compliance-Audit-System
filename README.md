@@ -545,7 +545,7 @@ docker compose up
 
 - `docker-compose.yml` must live at the **project root**, not inside `backend/`. (Verified via PowerShell: `Test-Path .\backend\docker-compose.yml` → `false`, `Test-Path .\docker-compose.yml` → `true`.)
 - The backend container mounts local `./storage` and `./models` directories as volumes, so the knowledge base and model weights don't need to be baked into the image and persist across container rebuilds.
-- **Docker Desktop must be running** before `docker compose up` — a common early error was the Docker engine being unreachable simply because Docker Desktop itself hadn't been started.
+- **Docker Desktop must be running** before `docker compose up` — a common early error was the Docker engine being unreachable simply because Docker Desktop itself hadn't been started
 - Example service layout in `docker-compose.yml`:
   ```yaml
   services:
