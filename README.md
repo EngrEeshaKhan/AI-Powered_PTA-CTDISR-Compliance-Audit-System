@@ -608,7 +608,7 @@ The system supports exactly two roles.
 | Export reports | ✅ | — |
 | Access Administration/Settings screens | ✅ | ❌ |
 
-**Hard security requirement:** CTDISR framework upload/change functionality is Administrator-only, both at the API level (server-side enforcement) and the UI level (Auditors must not even see the admin screen, not just be blocked from submitting it).
+**Hard security requirement:** CTDISR framework upload/change functionality is Administrator-only, both at the API level (server-side enforcement) and the UI level (Auditors must not even see the admin screen, not just be blocked from submitting it)
 
 
 ## 21. Security Considerations
