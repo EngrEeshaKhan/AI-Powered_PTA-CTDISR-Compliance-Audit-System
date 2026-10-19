@@ -132,7 +132,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 
 ## 6. Phase 2 — Knowledge Base & Document Processing
 
-**Goal:** get organizational evidence into a structured, searchable form.
+**Goal:** get organizational evidence into a structured, searchable form
 
 - Four document categories are supported: **Policies, Advisories, CTDISR, Assets** — each stored in its own subfolder under `storage/documents/`
 - Ingestion supports **PDF, DOCX, and Excel** files. Documents already processed in development include:
