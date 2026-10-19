@@ -248,7 +248,7 @@ Draft → AI Generated → Auditor Review → Reviewed → Finalized
 - Saved audits are persisted at `storage/audits/audit_results.json`, keyed by a unique audit ID.
 - The **Reports API** (`/api/v1/reports`) exposes the saved audit list and individual audit detail to the frontend, backed by a `JsonAuditService()`
 - **Excel/PDF export** of finalized reports is planned but not yet implemented.
-- The frontend's Audit History / Reports screens should render these persisted records (not raw API JSON) as a proper table: Audit ID, Control, Level, Status, Created, Updated, Actions — with a detail view showing the full finding (Control, Description, Interpretation, Evidence, PTA Response, Recommendations, Action By, NTC Comments, Status).
+- The frontend's Audit History / Reports screens should render these persisted records (not raw API JSON) as a proper table: Audit ID, Control, Level, Status, Created, Updated, Actions — with a detail view showing the full finding (Control, Description, Interpretation, Evidence, PTA Response, Recommendations, Action By, NTC Comments, Status)
 
 <img width="801" height="188" alt="image" src="https://github.com/user-attachments/assets/cbff5a19-81f2-45b3-a98b-0af7f7859455" />
 <img width="404" height="145" alt="image" src="https://github.com/user-attachments/assets/7dda33b2-e06e-4481-8719-5d1cf68053d3" />
