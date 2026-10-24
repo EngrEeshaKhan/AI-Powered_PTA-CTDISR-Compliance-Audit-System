@@ -672,7 +672,7 @@ The system supports exactly two roles.
 - Finalize the Docker Compose setup and stand up the GitHub Actions CI/CD pipeline (install → test → build → push/deploy)
 - Clean up model path inconsistencies between the original 3B fine-tune references and the active local 1B fallback model
 - Evaluate whether PostgreSQL should formally replace JSON storage as the system scales beyond a single-machine deployment
-- Add automated tests (backend unit/integration tests, frontend component tests) to support the CI pipeline.
+- Add automated tests (backend unit/integration tests, frontend component tests) to support the CI pipeline
 - Add audit logging (who ran/edited/finalized which audit, and when) for compliance traceability of the tool itself.
 
 ## 25. Author
