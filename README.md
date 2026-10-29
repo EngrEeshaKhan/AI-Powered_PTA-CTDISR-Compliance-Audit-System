@@ -229,7 +229,7 @@ Select Control → Retrieve Evidence → Build Context → Llama + LoRA → Gene
 
 ## 10. Phase 6 — Auditor Review & Reporting
 
-**Goal:** turn an AI draft into an authoritative, human-approved audit record.
+**Goal:** turn an AI draft into an authoritative, human-approved audit record
 
 **Audit lifecycle:**
 
