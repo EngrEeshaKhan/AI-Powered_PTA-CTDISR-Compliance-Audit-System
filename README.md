@@ -570,7 +570,7 @@ Repository: [`EngrEeshaKhan/AI-Powered_PTA-CTDISR-Compliance-Audit-System`](http
 
 **Local workflow covered:** commits, branches, fetch, pull/rebase, push, merge, and code review concepts
 
-**Important clarification:** GitHub does not automatically run or deploy the application just because code is pushed or edited. Automation only happens if a CI/CD pipeline is explicitly configured.
+**Important clarification:** GitHub does not automatically run or deploy the application just because code is pushed or edited. Automation only happens if a CI/CD pipeline is explicitly configured
 
 **Planned/target CI/CD pipeline (GitHub Actions):**
 ```
