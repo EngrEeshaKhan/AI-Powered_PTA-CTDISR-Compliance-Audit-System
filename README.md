@@ -143,7 +143,7 @@ The system is designed to run **entirely offline** — no evidence, control data
 - The index currently holds roughly **805 metadata/chunk records**, tracked in `storage/vectors/knowledge_metadata.json`
 - **Upload success is not the same as processing success.** The system distinguishes four document states:
   - `Uploaded` — file received and saved to disk
-  - `Processing` — parsing/chunking/embedding in progress
+  - `Processing` — parsing/chunking/embedding in progress.
   - `Processed` — successfully chunked, embedded, and indexed
   - `Processing Failed` — an error occurred during parsing/embedding (the file is retained but not searchable)
 - The frontend Documents screen is expected to show this status explicitly rather than a generic "success" message, plus support search/filter, per-document detail view, and delete
